@@ -4,12 +4,12 @@ class Block {
     
     //Let's try to implement this logic ourselves
     
-    // constructor({timestamp, lastHash, hash, data}) {
-    //     this.timestamp = timestamp;
-    //     this.lastHash = lastHash;
-    //     this.hash = hash;
-    //     this.data = data;
-    // }
+    constructor({timestamp, lastHash, hash, data}) {
+        this.timestamp = timestamp;
+        this.lastHash = lastHash;
+        this.hash = hash;
+        this.data = data;
+    }
 }
 
 //Basically, this allows you to share this file between other files
