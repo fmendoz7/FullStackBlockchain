@@ -1,4 +1,1 @@
-# PureBlockchain
-# PureBlockchain
-# FullStackBlockchainApp
 # FullStackBlockchain
