@@ -22,7 +22,7 @@ class Block {
     };
 
     //Any method NOT using constructor uses 'static' instead
-    static minedBlock({lastBlock, data}) {
+    static mineBlock({lastBlock, data}) {
         const timestamp = Date.now();
         const lastHash = lastBlock.hash;
 

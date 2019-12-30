@@ -1,6 +1,7 @@
 //Require crypto file
 const crypto = require('crypto');
 
+//...inputs in JS allows one to SCALE input and fit accordingly
 const cryptoHash = (...inputs) => {
     const hash = crypto.createHash('sha256');
 

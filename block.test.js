@@ -39,32 +39,32 @@ describe('Block', () => {
 
     });
 
-    describe('minedBlock()', () => {
+    describe('mineBlock()', () => {
         const lastBlock = Block.genesis();
         const data = 'mined data';
-        const minedBlock = Block.minedBlock({lastBlock, data});
+        const mineBlock = Block.mineBlock({lastBlock, data});
     
         it('returns a Block instance', () => {
-            expect(minedBlock instanceof Block).toBe(true);
+            expect(mineBlock instanceof Block).toBe(true);
         });
 
         it('sets the `lastHash` to be the `Hash` of the lastBlock', () => {
-            expect(minedBlock.lastHash).toEqual(lastBlock.hash);
+            expect(mineBlock.lastHash).toEqual(lastBlock.hash);
                 //Critical for linking block data structures to create block 'chain'
         });
 
         it('sets the `data`', () => {
-            expect(minedBlock.data).toEqual(data);
+            expect(mineBlock.data).toEqual(data);
         });
 
         it('sets a `timestamp`', () => {
-            expect(minedBlock.timestamp).not.toEqual(undefined);
+            expect(mineBlock.timestamp).not.toEqual(undefined);
                 //That is a SHIT test. IRL, you'd want to have timestamp increment from previous
         });
 
         it('creates a SHA-256 `hash` based on proper inputs', () => {
-            expect(minedBlock.hash)
-                .toEqual(cryptoHash(minedBlock.timestamp, lastBlock.hash, data));
+            expect(mineBlock.hash)
+                .toEqual(cryptoHash(mineBlock.timestamp, lastBlock.hash, data));
         });
     });
 });
