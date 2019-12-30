@@ -22,10 +22,11 @@ class Block {
     };
 
     //Any method NOT using constructor uses 'static' instead
-    static mineBlock({lastBlock, data}) {
+    static minedBlock({lastBlock, data}) {
         const timestamp = Date.now();
         const lastHash = lastBlock.hash;
 
+        //Because value is the same as key, can leave timestamp, lastHash and data as-is
         return new this({
             timestamp,
             lastHash,
