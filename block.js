@@ -1,5 +1,6 @@
 //Correct that you imported static genesis block data from config file
 const {GENESIS_DATA} = require('./config');
+const cryptoHash = require('./crypto-hash');
 
 class Block {
     //Good coding practice to wrap >= 3 args in map-structure 
@@ -22,10 +23,14 @@ class Block {
 
     //Any method NOT using constructor uses 'static' instead
     static mineBlock({lastBlock, data}) {
+        const timestamp = Date.now();
+        const lastHash = lastBlock.hash;
+
         return new this({
-            timestamp: Date.now(),
-            lastHash: lastBlock.hash,
-            data
+            timestamp,
+            lastHash,
+            data,
+            hash: cryptoHash(timestamp, lastHash, data)
         });
     };
 }

@@ -1,5 +1,6 @@
 //Require statement basically accesses another file
 const Block = require('./block');
+const cryptoHash = require('./crypto-hash');
 const {GENESIS_DATA} = require('./config');
 
 describe('Block', () => {
@@ -59,7 +60,12 @@ describe('Block', () => {
         it('sets a `timestamp`', () => {
             expect(minedBlock.timestamp).not.toEqual(undefined);
                 //That is a SHIT test. IRL, you'd want to have timestamp increment from previous
-        })
+        });
+
+        it('creates a SHA-256 `hash` based on proper inputs', () => {
+            expect(minedBlock.hash)
+                .toEqual(cryptoHash(minedBlock.timestamp, lastBlock.hash, data));
+        });
     });
 });
 
