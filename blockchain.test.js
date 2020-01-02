@@ -11,8 +11,15 @@ describe('Blockchain', () => {
     //When running test suite, ensure you have a NEW blockchain instance BEFORE tests
     beforeEach(() => {
         blockchain = new Blockchain_Dep();
+        newChain = new Blockchain_Dep();
+            //Created to check if a new blockchain instance has actually been created
+    
+        originalChain = blockchain.chain;
+            //Basically create copy of the original, as we will modify `blockchain` in some tests
+            //Temp variable for 3-variable comparison: copy of an original and two comparison variables
     })
 
+    //Preliminary tests
     it('contains a `chain` array instance', () => {
         expect(blockchain.chain instanceof Array).toBe(true);
     });
@@ -30,6 +37,7 @@ describe('Blockchain', () => {
         expect(blockchain.chain[blockchain.chain.length - 1].data).toEqual(newData);
     });
 
+    //Next test suite
     describe('isValidChain()', () => {
         describe('when the chain does not start with the genesis block', () => {
             it('returns false', () => {
@@ -45,9 +53,9 @@ describe('Blockchain', () => {
             //If you want to reuse same data/attributes for tests, include in `beforeEach()` block
             beforeEach(() => {
                 //Sample data payload. Will change in production, ideally as hashmap-like structure.
-                blockchain.addBlock({data: 'Bears'});
-                blockchain.addBlock({data: 'Beets'});
-                blockchain.addBlock({data: 'Battlestar Galactica'});
+                blockchain.addBlock({data: 'Test Data #1'});
+                blockchain.addBlock({data: 'Test Data #2'});
+                blockchain.addBlock({data: 'Test Data #3'});
             })
             
             describe('and a lastHash reference has changed', () => {
@@ -70,9 +78,59 @@ describe('Blockchain', () => {
 
             describe('and the chain does NOT contain any invalid blocks', () => {
                 it('returns true', () => {
-                    expect(Blockchain_Dep.isValidChain(blockchain.chain)).toBe(false);
+                    //Passed all tests and expect to return true
+                    expect(Blockchain_Dep.isValidChain(blockchain.chain)).toBe(true);
                 });
             });
+        });
+    });
+
+    //REM: We want to replace with a different chain of the same length
+    describe('replaceChain()', () => {
+        describe('when the new chain is NOT longer than old', () => {
+            it('does NOT replace the chain', () => {
+                newChain.chain[0] = {new: 'chain'};
+                blockchain.replaceChain(newChain.chain);
+
+                //let checkLength = false;
+
+                if(blockchain.length < originalChain.length)
+                {
+                    return true;
+                }
+
+                expect(blockchain.chain).toEqual(originalChain);
+            })
+        })
+
+        describe('when the NEW chain is longer', () => {
+
+            //Add new test data for this test suite before each block
+            beforeEach(() => {
+                newChain.addBlock({data: 'Test Data #1'});
+                newChain.addBlock({data: 'Test Data #2'});
+                newChain.addBlock({data: 'Test Data #3'});
+            });
+
+            describe('and the chain is invalid', () => {
+                it('does not replace the chain', () => {
+                    newChain.chain[2].hash = 'test-invalid-hash';
+
+                    blockchain.replaceChain(newChain.chain);
+
+                    //Will be invalid, since we forcibly changed the hash for the last block of newChain
+                    expect(blockchain.chain).toEqual(originalChain);
+                });
+            });
+
+            describe('and the chain is valid', () => {
+                it('replaces the chain', () => {
+                    //We are not modifying any data, but doing a direct copy of one chain to the next
+                    blockchain.replaceChain(newChain.chain);
+
+                    expect(blockchain.chain).toEqual(newChain.chain);
+                })
+            })
         });
     });
 });

@@ -1,4 +1,5 @@
 const Block = require('./block');
+const cryptoHash = require('./crypto-hash');
 
 class Blockchain {
     //Blockchain constructor to instantiate genesis block
@@ -7,40 +8,73 @@ class Blockchain {
     }
 
     //Factory method to append additional blocks to chain
-    addBlock({data}) {
+    addBlock({data, blockNumber}) {
         const newBlock = Block.mineBlock({
             lastBlock: this.chain[this.chain.length-1],
-            data
+            data,
+            //blockNumber: blockNumber++
         });
 
         this.chain.push(newBlock);
     }
 
-    isValidChain({BlockchainParam}) {
-        let masterBool = true;
+    //ERROR: Did not include `static` keyword to call on actual class
+        //ERROR: Wanted to use `chain` instead 
+    static isValidChain(chain) {
+        //ERROR: Did not check genesis block itself 
+            //ERROR: Will fail because triple equality will not pass unless same instance
+            //COUNTER: To just check content, convert to string
+        if(JSON.stringify(chain[0]) !== JSON.stringify(Block.genesis()))
+        {
+            return false;
+        };
 
         //Have for loop that checks if the previous block's hash is equal to the lastHash of current block
-        for(var i = 1; i < BlockchainParam.chain.length; i++)
+        for(let i = 1; i < chain.length; i++)
         {
-            if(i == 1 && BlockchainParam.chain[i].lastHash == BlockchainParam.chain[0].hash)
+            //Genesis block check moved to outside the for loop
+            const block = chain[i];
+
+            const realLastHash = chain[i-1].hash;
+
+            const {timestamp, lastHash, hash, data } = block;
+
+            if(lastHash !== realLastHash)
             {
-                masterBool = true;
+                return false;
             }
 
-            if(BlockchainParam.chain[i].lastHash == BlockchainParam.chain[i-1].hash)
-            {
-                masterBool = true;
-            }
+            const validatedHash = cryptoHash(timestamp, lastHash, data);
 
-            else
+            if(hash !== validatedHash) 
             {
-                masterBool = false;
-                break;
-                    //Break statement ensure `false` is final value for masterBool
+                //Immediately breaks and returns false
+                return false;
             }
         }
 
-        return masterBool;
+        //Basically return true if all conditions pass
+        return true;
+    }
+
+    replaceChain(paramchain) {
+        //Can use for-loop to copy contents into new Chain
+        //REM: Data structure for blockchain is (dynamic) ARRAY of blocks, linked by hashes 
+            //Linked-list like structure, but you are also given `indices` in the form of block number
+        
+        //Chain DOES NOT get replaced if it does NOT follow the conditions for being replaced
+        //CHECK: If length of chain is less than the other
+        if(paramchain.length <= this.chain.length){
+            return;
+        }
+
+        //CHECK: If blockchain instance is NOT valid
+        if(!Blockchain.isValidChain(paramchain))
+        {
+            return;
+        }
+
+        this.chain = paramchain;
     }
 }
 

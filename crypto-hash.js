@@ -3,6 +3,7 @@ const crypto = require('crypto');
 
 //...inputs in JS allows one to SCALE input and fit accordingly
 const cryptoHash = (...inputs) => {
+    //Essentially, hash ALL the inputs put into dynamic array
     const hash = crypto.createHash('sha256');
 
     //Applying .sort method allows arguments to be placed in ANY order

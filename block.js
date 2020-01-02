@@ -5,14 +5,13 @@ const cryptoHash = require('./crypto-hash');
 class Block {
     //Good coding practice to wrap >= 3 args in map-structure 
     //Coding calls makes a HUGE difference in consistent code calls
-    
-    //Let's try to implement this logic ourselves
-    
-    constructor({timestamp, lastHash, hash, data}) {
+        
+    constructor({timestamp, lastHash, hash, data, blockNumber}) {
         this.timestamp = timestamp;
         this.lastHash = lastHash;
         this.hash = hash;
         this.data = data;
+        //this.blockNumber = blockNumber;
     }
 
     //REM: () for methods. Use 'static' keyword instead
@@ -22,16 +21,18 @@ class Block {
     };
 
     //Any method NOT using constructor uses 'static' instead
-    static mineBlock({lastBlock, data}) {
+    static mineBlock({lastBlock, data, blockNumber}) {
         const timestamp = Date.now();
         const lastHash = lastBlock.hash;
+        //blockNumber = lastBlock.blockNumber++;
 
         //Because value is the same as key, can leave timestamp, lastHash and data as-is
         return new this({
             timestamp,
             lastHash,
             data,
-            hash: cryptoHash(timestamp, lastHash, data)
+            hash: cryptoHash(timestamp, lastHash, data),
+            //blockNumber
         });
     };
 }

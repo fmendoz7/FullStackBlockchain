@@ -5,7 +5,8 @@ const GENESIS_DATA = {
     timestamp: 1,
     lastHash: '----',
     hash: 'hash-one',
-    data: []
+    data: [],
+    //blockNumber: 1
 }; 
 
 module.exports = {GENESIS_DATA};
