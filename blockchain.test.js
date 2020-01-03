@@ -19,7 +19,6 @@ describe('Blockchain', () => {
             //Temp variable for 3-variable comparison: copy of an original and two comparison variables
     })
 
-    //Preliminary tests
     it('contains a `chain` array instance', () => {
         expect(blockchain.chain instanceof Array).toBe(true);
     });
