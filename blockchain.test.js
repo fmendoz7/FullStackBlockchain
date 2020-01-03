@@ -87,11 +87,25 @@ describe('Blockchain', () => {
 
     //REM: We want to replace with a different chain of the same length
     describe('replaceChain()', () => {
+        let errorMock, logMock;
+
+        beforeEach(() => {
+            errorMock = jest.fn();
+            logMock = jest.fn();
+
+            //Quiets terminal output from runs of unit tests
+            global.console.error = errorMock;
+            global.console.log = logMock;
+        });
+
         describe('when the new chain is NOT longer than old', () => {
-            it('does NOT replace the chain', () => {
+            
+            beforeEach(() => {
                 newChain.chain[0] = {new: 'chain'};
                 blockchain.replaceChain(newChain.chain);
-
+            });
+            
+            it('does NOT replace the chain', () => {
                 //let checkLength = false;
 
                 if(blockchain.length < originalChain.length)
@@ -100,8 +114,12 @@ describe('Blockchain', () => {
                 }
 
                 expect(blockchain.chain).toEqual(originalChain);
-            })
-        })
+            });
+
+            it('logs an error', () => {
+                expect(errorMock).toHaveBeenCalled();
+            });
+        });
 
         describe('when the NEW chain is longer', () => {
 
@@ -113,24 +131,37 @@ describe('Blockchain', () => {
             });
 
             describe('and the chain is invalid', () => {
-                it('does not replace the chain', () => {
+                
+                beforeEach(() => {
                     newChain.chain[2].hash = 'test-invalid-hash';
-
                     blockchain.replaceChain(newChain.chain);
-
+                });
+                
+                it('does not replace the chain', () => {
                     //Will be invalid, since we forcibly changed the hash for the last block of newChain
                     expect(blockchain.chain).toEqual(originalChain);
+                });
+
+                it('logs an error', () => {
+                    expect(errorMock).toHaveBeenCalled();
                 });
             });
 
             describe('and the chain is valid', () => {
+                
+                beforeEach(() => {
+                    blockchain.replaceChain(newChain.chain);
+                });
+                
                 it('replaces the chain', () => {
                     //We are not modifying any data, but doing a direct copy of one chain to the next
-                    blockchain.replaceChain(newChain.chain);
-
                     expect(blockchain.chain).toEqual(newChain.chain);
+                });
+
+                it('logs successful chain replacement', () => {
+                    expect(logMock).toHaveBeenCalled();
                 })
-            })
+            });
         });
     });
 });

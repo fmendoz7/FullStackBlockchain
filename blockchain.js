@@ -65,15 +65,18 @@ class Blockchain {
         //Chain DOES NOT get replaced if it does NOT follow the conditions for being replaced
         //CHECK: If length of chain is less than the other
         if(paramchain.length <= this.chain.length){
+            console.error('ERROR: Incoming chain is LONGER!');
             return;
         }
 
         //CHECK: If blockchain instance is NOT valid
         if(!Blockchain.isValidChain(paramchain))
         {
+            console.error('ERROR: Incoming chain is INVALID!');
             return;
         }
 
+        console.log('SUCCESS: Replacing chain with new instance');
         this.chain = paramchain;
     }
 }
