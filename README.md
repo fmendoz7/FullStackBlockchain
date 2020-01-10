@@ -7,8 +7,13 @@ Design:
   
 Technologies:
   > Jest testing framework
+
   > NodeJS
+
   > Express
+
   > React
+
   > Heroku
+
   > Javascript
