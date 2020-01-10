@@ -1,5 +1,5 @@
 //Correct that you imported static genesis block data from config file
-const {GENESIS_DATA} = require('./config');
+const { GENESIS_DATA, MINE_RATE } = require('./config');
 const cryptoHash = require('./crypto-hash');
 
 class Block {
@@ -38,6 +38,22 @@ class Block {
 
         //Because value is the same as key, can leave timestamp, lastHash and data as-is
         return new this({timestamp, lastHash, data, difficulty, nonce, hash});
+    };
+
+    //Adjusts difficulty based on subsequent appends to blockchain
+    static adjustDifficulty({ originalBlock, timestamp }) {
+        //difficulty 
+        const { difficulty } = originalBlock;
+
+        const difference = timestamp - originalBlock.timestamp;
+
+        if (difference > MINE_RATE) {
+            return difficulty - 1;
+        }
+
+        //else {
+            return difficulty + 1;
+        //}
     };
 }
 
