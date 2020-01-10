@@ -1,10 +1,11 @@
 //Require statement basically accesses another file
 const Block = require('./block');
 const cryptoHash = require('./crypto-hash');
-const {GENESIS_DATA} = require('./config');
+const { GENESIS_DATA, MINE_RATE } = require('./config');
 
 describe('Block', () => {
-   const timestamp = 'a-date';
+    const timestamp = 2000;
+        //provide valid millisecond value for timestamp
    const lastHash = 'foo-hash';
    const hash = 'bar-hash';
    const data = ['blockchain', 'data'];
@@ -84,6 +85,25 @@ describe('Block', () => {
         it('sets a `hash` that matches the difficulty criteria', () => {
             expect(mineBlock.hash.substring(0, mineBlock.difficulty))
                 .toEqual('0'.repeat(mineBlock.difficulty));
+        });
+    });
+
+    describe('adjustDifficulty()', () => {
+
+        //Decrease MINE_RATE by 100 ms to INCREASE difficulty by 1 level  
+        it('raises the difficulty for a quickly-mined block', () => {
+            expect(Block.adjustDifficulty({
+                originalBlock: block,
+                timestamp: block.timestamp + MINE_RATE - 100
+            })).toEqual(block.difficulty + 1);
+        });
+
+        //Increase MINE_RATE by 100 ms to DECREASE difficulty by 1 LEVEL
+        it('lowers the difficulty for a slowly-mined block', () => {
+            expect(Block.adjustDifficulty({
+                originalBlock: block,
+                timestamp: block.timestamp + MINE_RATE + 100
+            })).toEqual(block.difficulty - 1);
         });
     });
 });

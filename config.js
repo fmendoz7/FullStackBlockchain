@@ -1,5 +1,6 @@
 //Essentially, config.js is where you store hard-coded and global values
 
+const MINE_RATE = 1000;
 const INITIAL_DIFFICULTY = 3;
 
 //variables in all caps represents hard-coded objects
@@ -13,5 +14,5 @@ const GENESIS_DATA = {
     //blockNumber: 1
 }; 
 
-module.exports = {GENESIS_DATA};
+module.exports = {GENESIS_DATA, MINE_RATE};
     //In this instance, we are exporting sample data to be used in all genesis blocks
