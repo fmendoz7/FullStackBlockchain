@@ -111,6 +111,13 @@ describe('Block', () => {
                 timestamp: block.timestamp + MINE_RATE + 100
             })).toEqual(block.difficulty - 1);
         });
+
+        it('nevers drops below lower difficulty limit of 1', () => {
+            block.difficulty = -1;
+
+            //In this case, 1 is int-based boolean replacement for "true"
+            expect(Block.adjustDifficulty({ originalBlock: block })).toEqual(1);
+        })
     });
 });
 

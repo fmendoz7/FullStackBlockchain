@@ -44,9 +44,15 @@ class Block {
     //Adjusts difficulty based on subsequent appends to blockchain
     static adjustDifficulty({ originalBlock, timestamp }) {
         //difficulty 
+
         const { difficulty } = originalBlock;
 
         const difference = timestamp - originalBlock.timestamp;
+
+        if (difficulty < 1) {
+            //1 is returned to affirm breach of lower limit detected
+            return 1;
+        }
 
         if (difference > MINE_RATE) {
             return difficulty - 1;
