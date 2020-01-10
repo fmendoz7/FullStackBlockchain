@@ -6,11 +6,13 @@ class Block {
     //Good coding practice to wrap >= 3 args in map-structure 
     //Coding calls makes a HUGE difference in consistent code calls
         
-    constructor({timestamp, lastHash, hash, data, blockNumber}) {
+    constructor({timestamp, lastHash, hash, data, nonce, difficulty, blockNumber}) {
         this.timestamp = timestamp;
         this.lastHash = lastHash;
         this.hash = hash;
         this.data = data;
+        this.nonce = nonce;
+        this.difficulty = difficulty;
         //this.blockNumber = blockNumber;
     }
 
@@ -22,18 +24,20 @@ class Block {
 
     //Any method NOT using constructor uses 'static' instead
     static mineBlock({lastBlock, data, blockNumber}) {
-        const timestamp = Date.now();
+        let hash, timestamp;
         const lastHash = lastBlock.hash;
+        const { difficulty } = lastBlock;
+        let nonce = 0;
         //blockNumber = lastBlock.blockNumber++;
 
+        do {
+            nonce++;
+            timestamp = Date.now();
+            hash = cryptoHash(timestamp, lastHash, data, nonce, difficulty);
+        } while (hash.substring(0, difficulty) !== '0'.repeat(difficulty));
+
         //Because value is the same as key, can leave timestamp, lastHash and data as-is
-        return new this({
-            timestamp,
-            lastHash,
-            data,
-            hash: cryptoHash(timestamp, lastHash, data),
-            //blockNumber
-        });
+        return new this({timestamp, lastHash, data, difficulty, nonce, hash});
     };
 }
 

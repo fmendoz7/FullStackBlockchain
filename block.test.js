@@ -15,7 +15,10 @@ describe('Block', () => {
        timestamp,
        lastHash,
        hash,
-       data
+       data,
+       nonce,
+       difficulty
+        //ERROR: FORGOT TO ADD NONCE AND DIFFICULTY AS PART OF TEST FILE
    });
 
    it('has a timestamp, lastHash, hash, and data property', () => {
