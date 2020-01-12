@@ -6,12 +6,16 @@ Explanation (WIP): Full-Stack Application of Blockchain and paired cryptocurrenc
 Design:
   > Proof-Of-Work (PoW) Consensus Algorithm
   
-Technologies:
+Technologies and Libraries:
   > Jest testing framework
 
   > NodeJS
 
   > Express
+
+  > HexToBinary
+
+  > Nodemon
 
   > React
 
