@@ -10,11 +10,15 @@ const times = [];
 
 //Upper limit of 10,000 Proof-Of-Work Blocks
 for (let i = 0; i < 10000; i++) {
+
+    //Display stats of the most recent block in the chain
+    console.log('first block', blockchain.chain[blockchain.chain.length - 1]);
+
     //Get timestamp of previous block
     prevTimestamp = blockchain.chain[blockchain.chain.length - 1].timestamp;
 
     //Iteratively adds blocks
-    blockchain.addBlock({ data: `block ${i}` });
+    blockchain.addBlock({ data: `Block ${i}` });
 
     //Why is it called next block when it refers to block most recently appended to the chain?
     nextBlock = blockchain.chain[blockchain.chain.length - 1];
