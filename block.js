@@ -1,3 +1,6 @@
+//hexToBinary from libraries instead of local files 
+const hexToBinary = require('hex-to-binary');
+
 //Correct that you imported static genesis block data from config file
 const { GENESIS_DATA, MINE_RATE } = require('./config');
 const cryptoHash = require('./crypto-hash');
@@ -35,7 +38,7 @@ class Block {
             timestamp = Date.now();
             difficulty = Block.adjustDifficulty({ originalBlock: lastBlock, timestamp });
             hash = cryptoHash(timestamp, lastHash, data, nonce, difficulty);
-        } while (hash.substring(0, difficulty) !== '0'.repeat(difficulty));
+        } while (hexToBinary(hash).substring(0, difficulty) !== '0'.repeat(difficulty));
 
         //Because value is the same as key, can leave timestamp, lastHash and data as-is
         return new this({timestamp, lastHash, data, difficulty, nonce, hash});

@@ -3,6 +3,7 @@ const blockchain = new Blockchain();
 
 blockchain.addBlock({ data: 'initial' });
 
+console.log('Genesis Block Data Fields: ', blockchain.chain[blockchain.chain.length - 1]);
 let prevTimestamp, nextTimestamp, nextBlock, timeDiff, average;
 
 //Keep track of timestamps in array
@@ -12,7 +13,7 @@ const times = [];
 for (let i = 0; i < 10000; i++) {
 
     //Display stats of the most recent block in the chain
-    console.log('first block', blockchain.chain[blockchain.chain.length - 1]);
+    console.log('Block Data Fields: ', blockchain.chain[blockchain.chain.length - 1]);
 
     //Get timestamp of previous block
     prevTimestamp = blockchain.chain[blockchain.chain.length - 1].timestamp;
