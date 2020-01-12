@@ -17,3 +17,9 @@ Technologies:
   > Heroku
 
   > Javascript
+
+To run the unit tests found within the various test.js files, type:
+  > npm run test
+  
+To determine timestamp calculation and difficulty of impending blocks using the Proof-Of-Work Blockchain, type:
+  > node average-work.js
