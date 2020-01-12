@@ -34,8 +34,8 @@ class Blockchain {
         {
             //Genesis block check moved to outside the for loop
             const { timestamp, lastHash, hash, data, nonce, difficulty } = chain[i];
-
-            const realLastHash = chain[i-1].hash;
+            const realLastHash = chain[i - 1].hash;
+            const lastDifficulty = chain[i - 1].difficulty;
 
             if(lastHash !== realLastHash)
             {
@@ -47,6 +47,13 @@ class Blockchain {
             if(hash !== validatedHash) 
             {
                 //Immediately breaks and returns false
+                return false;
+            }
+
+            //Conditional to ensure that difficulty jumps DO NOT exceed 1 
+                //Need to include functionality where difficulty drifts towards a MEAN
+                //Need to prevent difficulty from being raised to high to prevent network standstill 
+            if (Math.abs(lastDifficulty - difficulty) > 1) {
                 return false;
             }
         }

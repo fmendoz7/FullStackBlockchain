@@ -3,6 +3,7 @@
     //(!!!)Remember to check what SPECIFICALLY is being exported from EACH FILE, it ranges from specific components to entire file
 const Blockchain_Dep = require('./blockchain');
 const Block_Dep = require('./block');
+const cryptoHash = require('./crypto-hash');
 
 describe('Blockchain', () => {
     let blockchain = new Blockchain_Dep();
@@ -72,6 +73,27 @@ describe('Blockchain', () => {
                     expect(Blockchain_Dep.isValidChain(blockchain.chain)).toBe(false);
                         //Automatically changed it as false because we know it deviates from expected
                         //In production, you cannot really predict contents of actual data payload (aside from lastHash, timestamp, etc.)
+                })
+            });
+
+            describe('and the chain contains a block with a jumped difficulty', () => {
+                it('returns false', () => {
+                    const lastBlock = blockchain.chain[blockchain.chain.length - 1];
+                    const lastHash = lastBlock.hash;
+                    const timestamp = Date.now();
+                    const nonce = 0;
+                    const data = [];
+
+                    //Set arbitrarily low difficulty
+                    const difficulty = lastBlock.difficulty - 3;
+
+                    const hash = cryptoHash(timestamp, lastHash, difficulty, nonce, data);
+                    const badBlock = new Block({
+                        timestamp, lastHash, hash, nonce, difficulty, data
+                    });
+
+                    blockchain.chain.push(badBlock);
+                    expect(Blockchain.isValidChain(blockchain.chain)).toBe(false);
                 })
             });
 
