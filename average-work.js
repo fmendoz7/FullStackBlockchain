@@ -26,5 +26,5 @@ for (let i = 0; i < 10000; i++) {
     //Callback helps calculate average by appending number to growing total
     average = times.reduce((total, num) => (total + num)) / times.length;
 
-    console.log(`Time to mine block: ${timeDiff} ms. Difficulty: ${nextBlock.difficulty}. Average Time: ${average} ms.`);
+    console.log(`Time to mine block #${i}: ${timeDiff} ms. Difficulty: ${nextBlock.difficulty}. Average Time: ${average} ms.`);
 }
