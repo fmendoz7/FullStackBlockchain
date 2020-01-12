@@ -52,7 +52,7 @@ class Blockchain {
 
             //Conditional to ensure that difficulty jumps DO NOT exceed 1 
                 //Need to include functionality where difficulty drifts towards a MEAN
-                //Need to prevent difficulty from being raised to high to prevent network standstill 
+                //Need to prevent difficulty from being raised too high to prevent network standstill 
             if (Math.abs(lastDifficulty - difficulty) > 1) {
                 return false;
             }
