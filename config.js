@@ -1,6 +1,7 @@
 //Essentially, config.js is where you store hard-coded and global values
 
 const MINE_RATE = 1000;
+    //1000 ms for the generation of every new block
 const INITIAL_DIFFICULTY = 3;
 
 //variables in all caps represents hard-coded objects
