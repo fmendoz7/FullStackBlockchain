@@ -1,5 +1,6 @@
 //Require crypto file
 const crypto = require('crypto');
+const hexToBinary = require('hex-to-binary');
 
 //...inputs in JS allows one to SCALE input and fit accordingly
 const cryptoHash = (...inputs) => {
@@ -11,7 +12,8 @@ const cryptoHash = (...inputs) => {
         //(???) Is it good practice to have the same order regardless?
     hash.update(inputs.sort().join(' '));
 
-    return hash.digest('hex');
+    //Wrap hashes in hexToBinary library to get BINARY hashes for difficulty adjustment
+    return hexToBinary(hash.digest('hex'));
 };
 
 //Allows exportation of cryptoHash const, NOT the entire file though
