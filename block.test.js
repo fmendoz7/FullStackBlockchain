@@ -1,3 +1,6 @@
+//hexToBinary from libraries instead of local files 
+const hexToBinary = require('hex-to-binary');
+
 //Require statement basically accesses another file
 const Block = require('./block');
 const cryptoHash = require('./crypto-hash');
@@ -83,7 +86,7 @@ describe('Block', () => {
         });
 
         it('sets a `hash` that matches the difficulty criteria', () => {
-            expect(mineBlock.hash.substring(0, mineBlock.difficulty))
+            expect(hexToBinary(mineBlock.hash).substring(0, mineBlock.difficulty))
                 .toEqual('0'.repeat(mineBlock.difficulty));
         });
 
