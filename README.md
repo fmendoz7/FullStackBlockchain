@@ -49,6 +49,8 @@ Explanation **(WIP)**: Full-Stack Application of Blockchain and paired cryptocur
 	
 	5. bodyParser middleware (v1.18.3)
 
+	6. redis (v2.8.0)
+
 To run the unit tests found within the various test.js files, type:
   > npm run test
   
