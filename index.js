@@ -1,11 +1,20 @@
+//Libraries 
 const bodyParser = require('body-parser');
 const express = require('express');
 
+//Local file dependencies
 const Blockchain = require('./blockchain');
+const PubSub = require('./pubsub');
 
+//Create new instances
 const app = express();
 const blockchain = new Blockchain();
-    //creating new instance of 'Blockchain'
+const pubsub = new PubSub({ blockchain });
+
+//Broadcast chain to any new subscribed node every time new block added to chain
+//Delay of 1000 ms to give time for message to register on all subscribed chains
+//Allow pubsub implementation to subscribe to all channels ASYNCHRONOUSLY
+setTimeout(() => pubsub.broadcastChain(), 1000);
 
 app.use(bodyParser.json());
 
