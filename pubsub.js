@@ -1,5 +1,3 @@
-//Test comment after DISASTROUS crash
-
 const redis = require('redis');
 
 //Constants of channels 
