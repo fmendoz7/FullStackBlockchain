@@ -27,4 +27,5 @@ class PubSub {
 
 const testPubSub = new PubSub();
 
-testPubSub.publisher.publish(CHANNELS.TEST, 'foo');
+//Set delay of 1000 milliseconds to ensure reliability of firing
+setTimeout(() => testPubSub.publisher.publish(CHANNELS.TEST, 'foo'), 1000);
