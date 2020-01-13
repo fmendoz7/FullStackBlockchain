@@ -5,6 +5,7 @@ Explanation **(WIP)**: Full-Stack Application of Blockchain and paired cryptocur
 
   * Purpose:
 	> Build a traditional, proof-of-work Blockchain with supported cryptocurrency for secure, peer-to-peer transactions, entirely from scratch using Javascript
+	
 	> While the asset (and its correposnding digital twin) has yet to be determined *(as of 1/12/2020)*, this project is to demonstrate the utility of a 
 	traditional blockchain in ensuring transactional security & authenticity of data while optimizing business logic, based entirely on first principles 
 
