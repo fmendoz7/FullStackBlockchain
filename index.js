@@ -36,5 +36,14 @@ app.post('/api/mine', (req, res) => {
     res.redirect('/api/blocks');
 });
 
-const PORT = 3000;
+const DEFAULT_PORT = 3000;
+let PEER_PORT;
+
+//Generates new port for other instances. Important so that instances connect
+if (process.env.GENERATE_PEER_PORT === 'true') {
+    PEER_PORT = DEFAULT_PORT + Math.ceil(Math.random() * 1000);
+}
+
+const PORT = PEER_PORT || DEFAULT_PORT;
+    //If port undefined, set back to default port of 3000
 app.listen(PORT, () => console.log(`Listening at localHost: ${PORT}`));
