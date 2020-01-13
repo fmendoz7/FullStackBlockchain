@@ -3,26 +3,26 @@
 ### NOTE: Project still under development (WIP)
 Explanation **(WIP)**: Full-Stack Application of Blockchain and paired cryptocurrency, implemented from scratch using Javascript and cryptographic Javascript libraries 
 
-  * Purpose:
+  * ***Purpose:***
 	> Build a traditional, proof-of-work Blockchain with supported cryptocurrency for secure, peer-to-peer transactions, entirely from scratch using Javascript
 	
 	> While the asset (and its correposnding digital twin) has yet to be determined *(as of 1/12/2020)*, this project is to demonstrate the utility of a 
 	traditional blockchain in ensuring transactional security & authenticity of data while optimizing business logic, based entirely on first principles 
 
-  * Utility:
+  * ***Utility:***
 	**Technical**
 	1. Confidentiality, Integrity, Availability of transactional data at rest & in motion
 	
 	2. Nonrepudiation due to time-stamped, hash-linked blocks of data, leading to an irrefutable transactional record
 
-  * Design:
+  * ***Design:***
 	1. ***(COMPLETED 1/11/2020)*** Proof-Of-Work (PoW) Consensus Algorithm 
 	
 	2. REST APIs for Blockchain instances to communicate with each other
 	
 	3. PubSub protocol for asynchronous communication 
   
-  * Technologies
+  * ***Technologies:***
 	1. NodeJS
 	
 	2. React
@@ -31,7 +31,7 @@ Explanation **(WIP)**: Full-Stack Application of Blockchain and paired cryptocur
 	
 	4. Javascript
 
-  * Dependencies (as outlined in package.json)
+  * ***Dependencies: (as outlined in package.json)***
 	1. Jest testing framework (v23.6.0)
 	
 	2. hexToBinary library (v1.0.1)
