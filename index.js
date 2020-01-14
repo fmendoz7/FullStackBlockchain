@@ -1,6 +1,7 @@
 //Libraries 
 const bodyParser = require('body-parser');
 const express = require('express');
+const request = require('request');
 
 //Local file dependencies
 const Blockchain = require('./blockchain');
@@ -10,6 +11,9 @@ const PubSub = require('./pubsub');
 const app = express();
 const blockchain = new Blockchain();
 const pubsub = new PubSub({ blockchain });
+
+const DEFAULT_PORT = 3000;
+const ROOT_NODE_ADDRESS = `http://localhost:${DEFAULT_PORT}`;
 
 //Broadcast chain to any new subscribed node every time new block added to chain
 //Delay of 1000 ms to give time for message to register on all subscribed chains
@@ -36,7 +40,17 @@ app.post('/api/mine', (req, res) => {
     res.redirect('/api/blocks');
 });
 
-const DEFAULT_PORT = 3000;
+const syncChains = () => {
+    request({ url: `${ROOT_NODE_ADDRESS}/api/blocks` }, (error, response, body) => {
+        if (!error && response.statusCode === 200) {
+            const rootChain = JSON.parse(body);
+
+            console.log('replace chain on a sync with', rootChain);
+            blockchain.replaceChain(rootChain);
+        }
+    });
+};
+
 let PEER_PORT;
 
 //Generates new port for other instances. Important so that instances connect
