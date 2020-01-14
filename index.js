@@ -32,7 +32,7 @@ app.post('/api/mine', (req, res) => {
 
     //Add block to local blockchain instance
     blockchain.addBlock({ data });
-
+    pubsub.broadcastChain();
     res.redirect('/api/blocks');
 });
 
@@ -44,6 +44,6 @@ if (process.env.GENERATE_PEER_PORT === 'true') {
     PEER_PORT = DEFAULT_PORT + Math.ceil(Math.random() * 1000);
 }
 
+//If port undefined, set back to default port of 3000
 const PORT = PEER_PORT || DEFAULT_PORT;
-    //If port undefined, set back to default port of 3000
 app.listen(PORT, () => console.log(`Listening at localHost: ${PORT}`));

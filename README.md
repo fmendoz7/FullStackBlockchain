@@ -51,6 +51,10 @@ Explanation **(WIP)**: Full-Stack Application of Blockchain and paired cryptocur
 
 	6. redis (v2.8.0)
 
+	7. cross-env (v5.2.0, dev flag)
+
+	8. request (v2.88.0)
+
 To run the unit tests found within the various test.js files, type:
   > npm run test
   
