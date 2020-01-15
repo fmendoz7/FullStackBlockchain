@@ -46,7 +46,7 @@ const syncChains = () => {
         if (!error && response.statusCode === 200) {
             const rootChain = JSON.parse(body);
 
-            console.log('STATUS: replace chain on a sync with', rootChain);
+            console.log('replace chain on a sync with', rootChain);
             blockchain.replaceChain(rootChain);
         }
     });
@@ -59,9 +59,12 @@ if (process.env.GENERATE_PEER_PORT === 'true') {
     PEER_PORT = DEFAULT_PORT + Math.ceil(Math.random() * 1000);
 }
 
-//If port undefined, set back to default port of 3000
+//If port undefined, set back to default por t of 3000
 const PORT = PEER_PORT || DEFAULT_PORT;
+
 app.listen(PORT, () => {
     console.log(`Listening at localHost: ${PORT}`);
+
+    //Call syncChains method overal
     syncChains();
 });
