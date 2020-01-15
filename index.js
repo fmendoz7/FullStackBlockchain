@@ -15,10 +15,8 @@ const pubsub = new PubSub({ blockchain });
 const DEFAULT_PORT = 3000;
 const ROOT_NODE_ADDRESS = `http://localhost:${DEFAULT_PORT}`;
 
-//Broadcast chain to any new subscribed node every time new block added to chain
-//Delay of 1000 ms to give time for message to register on all subscribed chains
-//Allow pubsub implementation to subscribe to all channels ASYNCHRONOUSLY
-setTimeout(() => pubsub.broadcastChain(), 1000);
+//Commented out delay in order to elminate "message received" by root node
+//setTimeout(() => pubsub.broadcastChain(), 1000);
 
 app.use(bodyParser.json());
 
