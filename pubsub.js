@@ -29,7 +29,7 @@ class PubSub {
     //METHOD to REPLACE CHAIN based on incoming blockchain messages from the blockchain channel 
         //Replaces chain if longer VALID one is received on the blockchain channel
     handleMessage(channel, message) {
-        console.log(`DEFAULT: Message received. Channel: ${channel}. Message: ${message}`);
+        console.log(`DEFAULT RESPONSE: Message received. Channel: ${channel}. Message: ${message}`);
 
         const parsedMessage = JSON.parse(message);
 
