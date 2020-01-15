@@ -43,6 +43,7 @@ app.post('/api/mine', (req, res) => {
 //METHOD: Syncs chains from various instances
 const syncChains = () => {
     request({ url: `${ROOT_NODE_ADDRESS}/api/blocks` }, (error, response, body) => {
+        //Status Code of 200 indicates success
         if (!error && response.statusCode === 200) {
             const rootChain = JSON.parse(body);
 
@@ -61,7 +62,6 @@ if (process.env.GENERATE_PEER_PORT === 'true') {
 
 //If port undefined, set back to default por t of 3000
 const PORT = PEER_PORT || DEFAULT_PORT;
-
 app.listen(PORT, () => {
     console.log(`Listening at localHost: ${PORT}`);
 
