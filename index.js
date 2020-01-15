@@ -60,9 +60,14 @@ if (process.env.GENERATE_PEER_PORT === 'true') {
     PEER_PORT = DEFAULT_PORT + Math.ceil(Math.random() * 1000);
 }
 
+//Testing if push successful
 //If port undefined, set back to default por t of 3000
 const PORT = PEER_PORT || DEFAULT_PORT;
 app.listen(PORT, () => {
     console.log(`Listening at localHost: ${PORT}`);
-    syncChains();
+
+    //Eliminate redundant messages by not publishing to itself
+    if(PORT !== DEFAULT_PORT) {
+        syncChains();
+    }
 });

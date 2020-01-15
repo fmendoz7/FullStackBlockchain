@@ -48,7 +48,15 @@ class PubSub {
 
     //METHOD to SEND MESSAGE over DESIGNATED CHANNEL
     publish({ channel, message }) {
-        this.publisher.publish(channel, message);
+        //Three-step encapsulation ensures that:
+            //1. You unsubscribe from the channel
+            //2. Publish the message
+            //3. Resubscribe to the channel
+        this.subscriber.unsubscribe(channel, () => {
+            this.publisher.publish(channel, message, () => {
+                this.subscriber.subscribe(channel);
+            });
+        });
     }
 
     //METHOD to broadcast blockchain
