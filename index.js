@@ -40,12 +40,13 @@ app.post('/api/mine', (req, res) => {
     res.redirect('/api/blocks');
 });
 
+//METHOD: Syncs chains from various instances
 const syncChains = () => {
     request({ url: `${ROOT_NODE_ADDRESS}/api/blocks` }, (error, response, body) => {
         if (!error && response.statusCode === 200) {
             const rootChain = JSON.parse(body);
 
-            console.log('replace chain on a sync with', rootChain);
+            console.log('STATUS: replace chain on a sync with', rootChain);
             blockchain.replaceChain(rootChain);
         }
     });
@@ -60,4 +61,7 @@ if (process.env.GENERATE_PEER_PORT === 'true') {
 
 //If port undefined, set back to default port of 3000
 const PORT = PEER_PORT || DEFAULT_PORT;
-app.listen(PORT, () => console.log(`Listening at localHost: ${PORT}`));
+app.listen(PORT, () => {
+    console.log(`Listening at localHost: ${PORT}`);
+    syncChains();
+});
