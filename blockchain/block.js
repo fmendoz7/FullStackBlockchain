@@ -2,8 +2,8 @@
 const hexToBinary = require('hex-to-binary');
 
 //Correct that you imported static genesis block data from config file
-const { GENESIS_DATA, MINE_RATE } = require('./config');
-const cryptoHash = require('./crypto-hash');
+const { GENESIS_DATA, MINE_RATE } = require('../config');
+const cryptoHash = require('../util/crypto-hash');
 
 class Block {
     //Good coding practice to wrap >= 3 args in map-structure 

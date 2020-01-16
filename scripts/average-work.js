@@ -1,4 +1,5 @@
-const Blockchain = require('./blockchain');
+const Blockchain = require('../blockchain');
+    //Don't need to specify index, as index file is automatic default for any directory we try to import
 const blockchain = new Blockchain();
 
 blockchain.addBlock({ data: 'initial' });

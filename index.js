@@ -5,7 +5,7 @@ const request = require('request');
 
 //Local file dependencies
 const Blockchain = require('./blockchain');
-const PubSub = require('./pubsub');
+const PubSub = require('./app/pubsub');
 
 //Create new instances
 const app = express();

@@ -3,7 +3,7 @@
     //(!!!)Remember to check what SPECIFICALLY is being exported from EACH FILE, it ranges from specific components to entire file
 const Blockchain_Dep = require('./blockchain');
 const Block_Dep = require('./block');
-const cryptoHash = require('./crypto-hash');
+const cryptoHash = require('../util/crypto-hash');
 
 describe('Blockchain', () => {
     let blockchain = new Blockchain_Dep();

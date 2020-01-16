@@ -1,5 +1,5 @@
 const Block = require('./block');
-const cryptoHash = require('./crypto-hash');
+const cryptoHash = require('../util/crypto-hash');
 
 class Blockchain {
     //Blockchain constructor to instantiate genesis block
