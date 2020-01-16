@@ -1,7 +1,7 @@
 //Relevant dependencies listed here
     //All dependencies have `_Dep` notation to note they originate from SEPARATE FILE
     //(!!!)Remember to check what SPECIFICALLY is being exported from EACH FILE, it ranges from specific components to entire file
-const Blockchain_Dep = require('./blockchain');
+const Blockchain_Dep = require('./index');
 const Block_Dep = require('./block');
 const cryptoHash = require('../util/crypto-hash');
 
