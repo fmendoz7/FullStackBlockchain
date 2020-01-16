@@ -18,9 +18,11 @@ Explanation **(WIP)**: Full-Stack Application of Blockchain and paired cryptocur
   * **Design:**
 	1. ***(COMPLETED 1/11/2020)*** Proof-Of-Work (PoW) Consensus Algorithm 
 	
-	2. REST APIs for Blockchain instances to communicate with each other
+	2. ***(COMPLETED 1/13/2020)*** REST APIs for Blockchain instances to communicate with each other
 	
-	3. PubSub protocol for asynchronous communication 
+	3. ***(COMPLETED 1/14/2020)*** PubSub protocol for asynchronous communication 
+
+	4. Cryptocurrency and linked wallet functionality
   
   * **Technologies:**
 	1. NodeJS
