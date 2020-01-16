@@ -43,7 +43,7 @@ Explanation **(WIP)**: Full-Stack Application of Blockchain and paired cryptocur
   * ***Dependencies: (as outlined in package.json)***
 	1. Jest testing framework (v23.6.0)
 	
-	2. hexToBinary library (v1.0.1)
+	2. hexToBinary conversion library (v1.0.1)
 	
 	3. nodeMon (v1.18.4)
 	
@@ -56,6 +56,8 @@ Explanation **(WIP)**: Full-Stack Application of Blockchain and paired cryptocur
 	7. cross-env (v5.2.0, dev flag)
 
 	8. request (v2.88.0)
+	
+	9. elliptic cryptographic library(v6.4.1)
 
 To run the unit tests found within the various test.js files, type:
   > npm run test
