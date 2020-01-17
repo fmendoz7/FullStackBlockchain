@@ -3,7 +3,7 @@ const hexToBinary = require('hex-to-binary');
 
 //Require statement basically accesses another file
 const Block = require('./block');
-const cryptoHash = require('../util/crypto-hash');
+const {cryptoHash} = require('../util');
 const { GENESIS_DATA, MINE_RATE } = require('../config');
 
 describe('Block', () => {

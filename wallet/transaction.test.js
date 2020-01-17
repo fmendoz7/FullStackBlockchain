@@ -39,7 +39,7 @@ describe('Transaction', () => {
         });
 
         it('sets the `amount` to the `senderWallet` balance', () => {
-            expect(tranasaction.input.amount).toEqual(senderWallet.balance);
+            expect(transaction.input.amount).toEqual(senderWallet.balance);
         });
 
         it('sets the `address` to the `senderWallet` publicKey', () => {
