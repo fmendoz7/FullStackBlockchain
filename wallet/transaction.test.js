@@ -60,4 +60,18 @@ describe('Transaction', () => {
             ).toBe(true);
         });
     });
+
+    describe('validTransaction()', () => {
+        describe('when the transaction is valid', () => {});
+    
+        describe('when the transaction is invalid', () => {
+            describe('and a transaction outputMap value is invalid', () => {
+
+            });
+
+            describe('and the transaction input signature is invalid', () => {
+
+            });
+        })
+    });
 });
