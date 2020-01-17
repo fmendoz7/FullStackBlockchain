@@ -1,10 +1,11 @@
 const Transaction = require('./transaction');
+const Wallet = require('./index');
 
 describe('Transaction', () => {
     let transaction, senderWallet, recipient, amount;
 
     beforeEach(() => {
-        senderWallet = new senderWallet();
+        senderWallet = new Wallet();
         recipient = 'recipient-public-key';
         amount = 50;
 
