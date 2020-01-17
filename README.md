@@ -59,6 +59,8 @@ Explanation **(WIP)**: Full-Stack Application of Blockchain and paired cryptocur
 	
 	9. elliptic cryptographic library(v6.4.1)
 
+	10. uuid (v3.3.2)
+
 To run the unit tests found within the various test.js files, type:
   > npm run test
   
