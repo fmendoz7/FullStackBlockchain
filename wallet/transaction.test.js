@@ -78,23 +78,26 @@ describe('Transaction', () => {
     
         describe('when the transaction is invalid', () => {
             describe('and a transaction outputMap value is invalid', () => {
-                it('returns false', () => {
+                it('returns false and logs and error', () => {
                     //Print an absolutely absurd number for a transaction
                         //Try a different unit test, such as negative currency value, etc.
                         //You are implying there is a limit of sent currency that would be considered nonsuspicious
                     transaction.outputMap[senderWallet.publicKey] = 999999;
                     
                     expect(Transaction.validTransaction(transaction)).toBe(false);
+                    expect(errorMock).toHaveBeenCalled();
                 });
             });
 
             describe('and the transaction input signature is invalid', () => {
                 describe('and the transaction input signature is invalid', () => {
-                    it('returns false', () => {
+                    it('returns false and logs and error', () => {
                         //Have different wallet sign the transaction
                         transaction.input.signature = new Wallet().sign('data');
                         
                         expect(Transaction.validTransaction(transaction)).toBe(false);
+                        expect(errorMock).toHaveBeenCalled();
+
                     });
                 });
             });
