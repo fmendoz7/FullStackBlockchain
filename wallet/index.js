@@ -1,6 +1,9 @@
+//Pull libraries and objects that are already in the directory
+    //{} tells you to agnostically look for that object listed somewhere in directory
 const {STARTING_BALANCE } = require('../config');
 const {ec, cryptoHash} = require('../util');
 
+//Pull local dependencies
 const Transaction = require('./transaction');
 
 class Wallet {
