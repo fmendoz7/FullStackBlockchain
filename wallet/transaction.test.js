@@ -103,4 +103,8 @@ describe('Transaction', () => {
             });
         })
     });
+
+    describe('update()', () => {
+
+    });
 });
