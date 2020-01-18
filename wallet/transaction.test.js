@@ -62,6 +62,14 @@ describe('Transaction', () => {
     });
 
     describe('validTransaction()', () => {
+        let errorMock;
+
+        //Use inherent jest methods for error detection
+        beforeEach(() => {
+            errorMock = jest.fn();
+            global.console.error = errorMock;
+        })
+        
         describe('when the transaction is valid', () => {
             it('returns true', () => {
                 expect(Transaction.validTransaction(transaction)).toBe(true);
@@ -71,6 +79,9 @@ describe('Transaction', () => {
         describe('when the transaction is invalid', () => {
             describe('and a transaction outputMap value is invalid', () => {
                 it('returns false', () => {
+                    //Print an absolutely absurd number for a transaction
+                        //Try a different unit test, such as negative currency value, etc.
+                        //You are implying there is a limit of sent currency that would be considered nonsuspicious
                     transaction.outputMap[senderWallet.publicKey] = 999999;
                     
                     expect(Transaction.validTransaction(transaction)).toBe(false);
