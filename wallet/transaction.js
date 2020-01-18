@@ -24,6 +24,10 @@ class Transaction {
             signature: senderWallet.sign(outputMap)
         };
     }
+
+    static validTransaction(transaction) {
+        return true;
+    }
 }
 
 module.exports = Transaction;
