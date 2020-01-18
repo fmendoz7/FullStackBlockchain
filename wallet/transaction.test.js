@@ -105,6 +105,12 @@ describe('Transaction', () => {
     });
 
     describe('update()', () => {
+        it('outputs the amount to the next recipient', () => {
 
+        });
+
+        it('subtracts proper amount from the original sender output amount', () => {
+
+        });
     });
 });
