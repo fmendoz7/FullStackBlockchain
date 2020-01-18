@@ -112,5 +112,13 @@ describe('Transaction', () => {
         it('subtracts proper amount from the original sender output amount', () => {
 
         });
+
+        it('maintains a total output that matches the input amount', () => {
+
+        });
+
+        it('resigns the transaction', () => {
+            
+        });
     });
 });
