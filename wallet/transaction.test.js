@@ -105,6 +105,15 @@ describe('Transaction', () => {
     });
 
     describe('update()', () => {
+        let originalSignature, originalSignatureOutput, nextRecipient, nextAmount;
+
+        beforeEach(() => {
+            originalSignature = transaction.input.signature;
+            originalSignatureOutput = trnasaction.outputMap[senderWallet.publicKey];
+            nextRecipient = 'next-recipient';
+            nextAmount = 50;
+        })
+
         it('outputs the amount to the next recipient', () => {
 
         });
@@ -117,7 +126,7 @@ describe('Transaction', () => {
 
         });
 
-        it('resigns the transaction', () => {
+        it('reattempts signature the transaction', () => {
             
         });
     });
