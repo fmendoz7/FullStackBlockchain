@@ -4,7 +4,8 @@ describe('cryptoHash()', () => {
 
     it('generates a SHA-256 hashed output', () => {
         expect(cryptoHash('foo'))
-            .toEqual('2c26b46b68ffc68ff99b453c1d30413413422d706483bfa0f98a5e886266e7ae');
+            .toEqual('b2213295d564916f89a6a42455567c87c3f480fcd7a1c15e220f17d7169a790b');
+                //ERRATA: New hash (b22132..) takes into account the QUOTES when being passed through JSON.stringify
     });
 
     it('produces same hash with same input arguments in any order', () => {
