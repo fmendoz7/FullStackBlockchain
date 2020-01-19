@@ -115,15 +115,17 @@ describe('Transaction', () => {
         })
 
         it('outputs the amount to the next recipient', () => {
-
+            expect(transaction.outputMap[nextRecipient]).toEqual(nextAmount);
         });
 
         it('subtracts proper amount from the original sender output amount', () => {
-
+            expect(transaction.outputMap[senderWallet.publicKey])
+                .toEqual(originalSenderOutput - nextAmount);
         });
 
         it('maintains a total output that matches the input amount', () => {
-
+            Object.values(transaction.outputMap)
+                .reduce((total, outputAmount) => total + outputAmount);
         });
 
         it('reattempts signature the transaction', () => {
