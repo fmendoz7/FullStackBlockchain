@@ -124,15 +124,14 @@ describe('Transaction', () => {
         });
 
         it('maintains a total output that matches the input amount', () => {
-            expect()
-                .toEqual(transaction.input.amount);
-            
-            Object.values(transaction.outputMap)
-                .reduce((total, outputAmount) => total + outputAmount);
+            expect(
+                Object.values(transaction.outputMap)
+                    .reduce((total, outputAmount) => total + outputAmount)
+            ).toEqual(transaction.input.amount);
         });
 
         it('reattempts signature the transaction', () => {
-            
+            expect(transaction.input.signature).not.toEqual(originalSignature);
         });
     });
 });
