@@ -11,4 +11,13 @@ describe('cryptoHash()', () => {
         expect(cryptoHash('one','two', 'three'))
             .toEqual(cryptoHash('three', 'one', 'two'))
     });
+
+    //Developed to counter reference to same cryptoHash outputMap bug, despite having synatically same values
+    it('produces a UNIQUE hash when the properties have changed on an input', () => {
+        const foo = {};
+        const originalHash = cryptoHash(foo);
+        foo['a'] = 'a';
+
+        expect(cryptoHash(foo)).not.toEqual(originalHash);
+    })
 });
