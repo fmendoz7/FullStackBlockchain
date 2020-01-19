@@ -109,7 +109,7 @@ describe('Transaction', () => {
 
         beforeEach(() => {
             originalSignature = transaction.input.signature;
-            originalSignatureOutput = trnasaction.outputMap[senderWallet.publicKey];
+            originalSignatureOutput = transaction.outputMap[senderWallet.publicKey];
             nextRecipient = 'next-recipient';
             nextAmount = 50;
         })
