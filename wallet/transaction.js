@@ -8,6 +8,7 @@ class Transaction {
         this.input = this.createInput({senderWallet, outputMap: this.outputMap});
     }
 
+    //Constructor-based methods
     createOutputMap({senderWallet, recipient, amount}) {
         const outputMap = {};
 
@@ -26,6 +27,17 @@ class Transaction {
         };
     }
 
+    update({senderWallet, recipient, amount}) {
+        this.outputMap[recipient] = amount;
+
+        //Deduct balance accordingly based on amount sent from transaction
+        this.outputMap[senderWallet.publicKey] = 
+            this.outputMap[senderWallet.publicKey] - amount;
+
+        this.input = this.createInput({senderWallet, outputMap: this.outputMap});
+    }
+
+    //Static Factory Method
     static validTransaction(transaction) {
         //: notation basically defines what the input is right away
         //Allows you to define input if you are storing consecutive variables 
