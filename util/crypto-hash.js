@@ -10,7 +10,7 @@ const cryptoHash = (...inputs) => {
     //Applying .sort method allows arguments to be placed in ANY order
         //(!!!) This may have potential repercussions of argument that could be same 'type' being mixed
         //(???) Is it good practice to have the same order regardless?
-    hash.update(inputs.sort().join(' '));
+    hash.update(inputs.map(input => JSON.stringify(input)).sort().join(' '));
 
     //Wrap hashes in hexToBinary library to get BINARY hashes for difficulty adjustment
     //return hexToBinary(hash.digest('hex'));
