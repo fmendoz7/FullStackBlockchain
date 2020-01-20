@@ -28,9 +28,9 @@ class Transaction {
     }
 
     update({senderWallet, recipient, amount}) {
-
         if(amount > this.outputMap[senderWallet.publicKey]) {
-            throw new Error('ERROR: Attempted amount exceeds balance');
+            //ERRATA: Ensure error descriptions are EXACTLY THE SAME
+            throw new Error('ERROR: Amount Exceeds Balance');
         }
 
         //Edge Case: If account DOESN'T EXIST within outputMap
