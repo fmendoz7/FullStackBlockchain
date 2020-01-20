@@ -33,7 +33,14 @@ class Transaction {
             throw new Error('ERROR: Attempted amount exceeds balance');
         }
 
-        this.outputMap[recipient] = amount;
+        //Edge Case: If account DOESN'T EXIST within outputMap
+        if(!this.outputMap[recipient]) {
+            this.outputMap[recipient] = amount;        }
+
+        //Recipient already exists within outputMap
+        else {
+            this.outputMap[recipient] = this.outputMap[recipient] + amount;
+        }
 
         //Deduct balance accordingly based on amount sent from transaction
         this.outputMap[senderWallet.publicKey] = 
