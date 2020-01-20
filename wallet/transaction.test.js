@@ -112,6 +112,13 @@ describe('Transaction', () => {
             originalSenderOutput = transaction.outputMap[senderWallet.publicKey];
             nextRecipient = 'next-recipient';
             nextAmount = 50;
+
+            //ERRATA: Did NOT have the transaction.update method taking these parameters
+            transaction.update({
+                senderWallet,
+                recipient: nextRecipient,
+                amount: nextAmount
+            })
         })
 
         it('outputs the amount to the next recipient', () => {
