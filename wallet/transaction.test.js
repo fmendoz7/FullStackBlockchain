@@ -105,11 +105,11 @@ describe('Transaction', () => {
     });
 
     describe('update()', () => {
-        let originalSignature, originalSignatureOutput, nextRecipient, nextAmount;
+        let originalSignature, originalSenderOutput, nextRecipient, nextAmount;
 
         beforeEach(() => {
             originalSignature = transaction.input.signature;
-            originalSignatureOutput = transaction.outputMap[senderWallet.publicKey];
+            originalSenderOutput = transaction.outputMap[senderWallet.publicKey];
             nextRecipient = 'next-recipient';
             nextAmount = 50;
         })
@@ -118,7 +118,7 @@ describe('Transaction', () => {
             expect(transaction.outputMap[nextRecipient]).toEqual(nextAmount);
         });
 
-        it('subtracts proper amount from the original sender output amount', () => {
+        it('subtracts PROPER amount from the original sender output amount', () => {
             expect(transaction.outputMap[senderWallet.publicKey])
                 .toEqual(originalSenderOutput - nextAmount);
         });
