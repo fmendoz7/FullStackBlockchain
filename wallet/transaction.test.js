@@ -157,6 +157,26 @@ describe('Transaction', () => {
             it('reattempts signature the transaction', () => {
                 expect(transaction.input.signature).not.toEqual(originalSignature);
             });
+
+            describe('and another transaction update for the same recipient', () => {
+                let addedAmount;
+
+                beforeEach(() => {
+                    addedAmount = 80;
+                    transaction.update({
+                        senderWallet,
+                        recipient: nextRecipient,
+                        amount: addedAmount
+                    });
+                });
+
+                it('adds to the recipient amount', () => {
+                    expect(transaction.outputMap[nextRecipient])
+                        .toEqual(nextAmount + addedAmount);
+                })
+
+                //We added 80 to our own account while subtracting 80 from our own, so net of 0
+            })
         });
     });
 });
