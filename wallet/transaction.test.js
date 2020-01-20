@@ -107,39 +107,56 @@ describe('Transaction', () => {
     describe('update()', () => {
         let originalSignature, originalSenderOutput, nextRecipient, nextAmount;
 
-        beforeEach(() => {
-            originalSignature = transaction.input.signature;
-            originalSenderOutput = transaction.outputMap[senderWallet.publicKey];
-            nextRecipient = 'next-recipient';
-            nextAmount = 50;
-
-            //ERRATA: Did NOT have the transaction.update method taking these parameters
-            transaction.update({
-                senderWallet,
-                recipient: nextRecipient,
-                amount: nextAmount
+        describe('the amount is INVALID by attempting to transact more than overall balance', () => {
+            it('throws an error', () => {
+                expect(() => {
+                    transaction.update({
+                        senderWallet, 
+                        recipient: 'foo',
+                        amount: 999999999
+                            //Basically use a RIDICULOUSLY LARGE number
+                            //Take GREAT NOTE of how much total & circulating supply you will have
+                    })
+                }).toThrow('ERROR: Amount Exceeds Balance');
             })
-        })
-
-        it('outputs the amount to the next recipient', () => {
-            expect(transaction.outputMap[nextRecipient]).toEqual(nextAmount);
         });
 
-        it('subtracts PROPER amount from the original sender output amount', () => {
-            expect(transaction.outputMap[senderWallet.publicKey])
-                .toEqual(originalSenderOutput - nextAmount);
-                //Returns NEW OUTPUT for sender's public key
-        });
-
-        it('maintains a total output that matches the input amount', () => {
-            expect(
-                Object.values(transaction.outputMap)
-                    .reduce((total, outputAmount) => total + outputAmount)
-            ).toEqual(transaction.input.amount);
-        });
-
-        it('reattempts signature the transaction', () => {
-            expect(transaction.input.signature).not.toEqual(originalSignature);
+        //Throw an error if attempting to pull more funds than available
+        describe('the amount is VALID by transacting less than overall balance', () => {
+            beforeEach(() => {
+                originalSignature = transaction.input.signature;
+                originalSenderOutput = transaction.outputMap[senderWallet.publicKey];
+                nextRecipient = 'next-recipient';
+                nextAmount = 50;
+    
+                //ERRATA: Did NOT have the transaction.update method taking these parameters
+                transaction.update({
+                    senderWallet,
+                    recipient: nextRecipient,
+                    amount: nextAmount
+                })
+            })
+    
+            it('outputs the amount to the next recipient', () => {
+                expect(transaction.outputMap[nextRecipient]).toEqual(nextAmount);
+            });
+    
+            it('subtracts PROPER amount from the original sender output amount', () => {
+                expect(transaction.outputMap[senderWallet.publicKey])
+                    .toEqual(originalSenderOutput - nextAmount);
+                    //Returns NEW OUTPUT for sender's public key
+            });
+    
+            it('maintains a total output that matches the input amount', () => {
+                expect(
+                    Object.values(transaction.outputMap)
+                        .reduce((total, outputAmount) => total + outputAmount)
+                ).toEqual(transaction.input.amount);
+            });
+    
+            it('reattempts signature the transaction', () => {
+                expect(transaction.input.signature).not.toEqual(originalSignature);
+            });
         });
     });
 });
