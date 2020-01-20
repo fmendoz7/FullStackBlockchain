@@ -175,6 +175,11 @@ describe('Transaction', () => {
                         .toEqual(nextAmount + addedAmount);
                 })
 
+                it('subtracts the amount from the original sender output amount', () => {
+                    expect(transaction.outputMap[senderWallet.publicKey])
+                        .toEqual(originalSenderOutput - nextAmount - addedAmount);
+                })
+
                 //We added 80 to our own account while subtracting 80 from our own, so net of 0
             })
         });
