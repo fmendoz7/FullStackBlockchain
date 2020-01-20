@@ -28,12 +28,21 @@ class Transaction {
     }
 
     update({senderWallet, recipient, amount}) {
+
+        if(amount > this.outputMap[senderWallet.publicKey]) {
+            throw new Error('ERROR: Attempted amount exceeds balance');
+        }
+
         this.outputMap[recipient] = amount;
 
         //Deduct balance accordingly based on amount sent from transaction
         this.outputMap[senderWallet.publicKey] = 
             this.outputMap[senderWallet.publicKey] - amount;
 
+        //ERRATA: Due to a peculiarity of JS for variables to point to the same object
+            //this.outputMap is still pointing to the original object
+            //despite the fact that the original object has changed.
+            //Not like in C++ or Python, where, you have a separate reference for it 
         this.input = this.createInput({senderWallet, outputMap: this.outputMap});
     }
 
