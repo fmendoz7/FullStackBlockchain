@@ -51,7 +51,7 @@ app.post('/api/transact', (req, res) => {
 
     catch(error) {
         //Return res.json ensures that request aborted when error detected
-        return res.json({type: 'error', message: error.message});
+        return res.status(400).json({type: 'error', message: error.message});
     }
 
     transactionPool.setTransaction(transaction);
