@@ -6,6 +6,7 @@ class TransactionPool {
         };
     }
 
+    //setTransaction method sets value to transactionMap
     setTransaction(transaction) {
         this.transactionMap[transaction.id] = transaction;
     }
