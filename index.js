@@ -45,8 +45,11 @@ app.post('/api/mine', (req, res) => {
 app.post('/api/transact', (req, res) => {
     const {amount, recipient} = req.body;
 
+    //Using 'let' so that transaction is dynamic to entire method
+    let transaction;
+
     try {
-        const transaction = wallet.createTransaction({recipient, amount});
+        transaction = wallet.createTransaction({recipient, amount});
     }
 
     catch(error) {
