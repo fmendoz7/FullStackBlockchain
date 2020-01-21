@@ -1,6 +1,9 @@
+//Transaction pool object responsible for transaction records across all ledger instances
 class TransactionPool {
     constructor() {
-        this.transactionMap = {};
+        this.transactionMap = {
+
+        };
     }
 
     setTransaction(transaction) {
