@@ -45,7 +45,14 @@ app.post('/api/mine', (req, res) => {
 app.post('/api/transact', (req, res) => {
     const {amount, recipient} = req.body;
 
-    const transaction = wallet.createTransaction({recipient, amount});
+    try {
+        const transaction = wallet.createTransaction({recipient, amount});
+    }
+
+    catch(error) {
+        //Return res.json ensures that request aborted when error detected
+        return res.json({type: 'error', message: error.message});
+    }
 
     transactionPool.setTransaction(transaction);
 
