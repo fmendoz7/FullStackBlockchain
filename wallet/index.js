@@ -18,7 +18,7 @@ class Wallet {
     sign(data) {
         //Ensures we are signing on an optimized hash version of the data
         //ERRATA: References the same underlying hash object (outputMap)
-            //
+            // 
         return this.keyPair.sign(cryptoHash(data));
     }
 

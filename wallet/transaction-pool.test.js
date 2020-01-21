@@ -8,7 +8,7 @@ describe('TransactionPool', () => {
     beforeEach(() => {
         transactionPool = new TransactionPool();
         transaction = new Transaction({
-            senderWallet: new Wallet(),
+            senderWallet: new Wallet(), 
             recipient: 'fake-recipient',
             amount: 50
         });

@@ -1,6 +1,5 @@
 //Require crypto file
 const crypto = require('crypto');
-//const hexToBinary = require('hex-to-binary');
 
 //...inputs in JS allows one to SCALE input and fit accordingly
 const cryptoHash = (...inputs) => {
@@ -20,5 +19,4 @@ const cryptoHash = (...inputs) => {
     return hash.digest('hex');
 };
 
-//Allows exportation of cryptoHash const, NOT the entire file though
 module.exports = cryptoHash;
