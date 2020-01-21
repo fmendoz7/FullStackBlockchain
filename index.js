@@ -61,7 +61,7 @@ app.post('/api/transact', (req, res) => {
 
     console.log('transactionPool', transactionPool);
 
-    res.json({transaction});
+    res.json({type: 'success', transaction});
 });
 
 //METHOD: Syncs chains from various instances
