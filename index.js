@@ -41,7 +41,7 @@ app.post('/api/mine', (req, res) => {
     res.redirect('/api/blocks');
 });
 
-//Post request allowing sender to complete transaction using their wallet
+//POST request allowing sender to complete transaction using their wallet
 app.post('/api/transact', (req, res) => {
     const {amount, recipient} = req.body;
 
@@ -71,6 +71,11 @@ app.post('/api/transact', (req, res) => {
 
     res.json({type: 'success', transaction});
 });
+
+//GET request to be able to get data within transaction pool map
+app.get('/api/transaction-pool-map', (req, res) => {
+    res.json(transactionPool.transactionMap);
+})
 
 //METHOD: Syncs chains from various instances
 const syncChains = () => {

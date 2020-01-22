@@ -9,7 +9,7 @@ describe('TransactionPool', () => {
         transactionPool = new TransactionPool();
         senderWallet = new Wallet();
         transaction = new Transaction({
-            senderWallet: new Wallet(), 
+            senderWallet, 
             recipient: 'fake-recipient',
             amount: 50
         });
