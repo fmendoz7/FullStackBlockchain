@@ -9,9 +9,10 @@ const CHANNELS = {
 };
 
 class PubSub {
-    constructor({ blockchain }) {
+    constructor({ blockchain, transactionPool }) {
         //Every pubsub instance will have a LOCAL BLOCKCHAIN INSTANCE
         this.blockchain = blockchain;
+        this.transactionPool = transactionPool;
 
         //Create publishers and subscribers
         this.publisher = redis.createClient();
