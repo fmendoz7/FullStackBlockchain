@@ -31,7 +31,7 @@ app.get('/api/blocks', (req, res) => {
 
 //(!!) Cannot GET /api/mine, because we only have get for /api/blocks
 
-//User is going to receive data in JSON format 
+//API: POST request for user is going to receive mining data
 app.post('/api/mine', (req, res) => {
     const { data } = req.body;
 
@@ -41,7 +41,7 @@ app.post('/api/mine', (req, res) => {
     res.redirect('/api/blocks');
 });
 
-//POST request allowing sender to complete transaction using their wallet
+//API: POST request allowing sender to complete transaction using their wallet
 app.post('/api/transact', (req, res) => {
     const {amount, recipient} = req.body;
 
@@ -69,7 +69,7 @@ app.post('/api/transact', (req, res) => {
     res.json({type: 'success', transaction});
 });
 
-//GET request to be able to get data within transaction pool map
+//API: GET request to be able to get data within transaction pool map
 app.get('/api/transaction-pool-map', (req, res) => {
     res.json(transactionPool.transactionMap);
 })
