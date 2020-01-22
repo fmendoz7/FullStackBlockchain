@@ -66,9 +66,6 @@ app.post('/api/transact', (req, res) => {
     }
 
     transactionPool.setTransaction(transaction);
-
-    console.log('transactionPool', transactionPool);
-
     res.json({type: 'success', transaction});
 });
 
