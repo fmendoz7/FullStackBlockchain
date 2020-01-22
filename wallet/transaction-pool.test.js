@@ -18,7 +18,7 @@ describe('TransactionPool', () => {
         it('adds a transaction', () => {
             transactionPool.setTransaction(transaction);
 
-            expect(transationPool.transactionMap[transaction.id])
+            expect(transactionPool.transactionMap[transaction.id])
                 .toBe(transaction);
         });
     });
