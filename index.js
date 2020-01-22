@@ -46,11 +46,12 @@ app.post('/api/transact', (req, res) => {
     const {amount, recipient} = req.body;
 
     //Using 'let' so that transaction is dynamic to entire method
-    let transaction = transactionPool.existingTransaction({inputAdress: wallet.publicKey});
+    let transaction = transactionPool
+        .existingTransaction({inputAdress: wallet.publicKey});
 
     try {
         if(transaction) {
-
+            transaction.update({senderWallet: wallet, recipient, amount}); 
         }
 
         else {
@@ -60,6 +61,7 @@ app.post('/api/transact', (req, res) => {
 
     catch(error) {
         //Return res.json ensures that request aborted when error detected
+        //Status Code: 400 means 'bad request'
         return res.status(400).json({type: 'error', message: error.message});
     }
 
