@@ -39,6 +39,10 @@ class PubSub {
             case CHANNELS.BLOCKCHAIN:
                 this.blockchain.replaceChain(parsedMessage);
                 break;
+            case CHANNELS.TRANSACTION:
+                this.transactionPool.setTransaction(parsedMessage);
+                break;
+            
         }
 
         //Want strict typecheck, so use ===
