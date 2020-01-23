@@ -74,7 +74,8 @@ class PubSub {
     //METHOD: broadcast transaction over the Blockchain
     broadcastTransaction(transaction) {
         this.publish({
-            
+            channel: CHANNELS.TRANSACTION,
+            message: JSON.stringify(transaction)
         })
     }
 }
