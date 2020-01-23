@@ -77,7 +77,7 @@ app.get('/api/transaction-pool-map', (req, res) => {
 })
 
 //METHOD: Syncs chains from various instances
-const syncChains = () => {
+const syncWithRootState = () => {
     request({ url: `${ROOT_NODE_ADDRESS}/api/blocks` }, (error, response, body) => {
         //Status Code of 200 indicates success
         if (!error && response.statusCode === 200) {
@@ -85,6 +85,15 @@ const syncChains = () => {
 
             console.log('replace chain on a sync with', rootChain);
             blockchain.replaceChain(rootChain);
+        }
+    });
+
+    request({url: `${ROOT_NODE_ADDRESS}/api/transaction-pool-map`}, (error, response, body) => {
+        if(!error && response.statusCode === 200) {
+            const rootTransactionPoolMap = JSON.parse(body);
+
+            console.log('replace transaction pool map on a sync with', rootTransactionPoolMap);
+            transactionPool.setMap(rootTransactionPoolMap);
         }
     });
 };
@@ -104,6 +113,6 @@ app.listen(PORT, () => {
 
     //Eliminate redundant messages by not publishing to itself
     if(PORT !== DEFAULT_PORT) {
-        syncChains();
+        syncWithRootState();
     }
 });
