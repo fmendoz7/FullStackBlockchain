@@ -70,6 +70,13 @@ class PubSub {
             message: JSON.stringify(this.blockchain.chain)
         });
     }
+
+    //METHOD: broadcast transaction over the Blockchain
+    broadcastTransaction(transaction) {
+        this.publish({
+            
+        })
+    }
 }
 
 //Commented lower lines in favor of exporting to be used by another class 
