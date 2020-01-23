@@ -11,6 +11,10 @@ class TransactionPool {
         this.transactionMap[transaction.id] = transaction;
     }
 
+    setMap(transactionPoolMap) {
+        
+    }
+
     //existingTransaction factory method returns list of transactions from specified address
     existingTransaction({inputAddress}) {
         const transactions = Object.values(this.transactionMap);

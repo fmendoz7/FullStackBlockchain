@@ -89,6 +89,7 @@ const syncWithRootState = () => {
     });
 
     request({url: `${ROOT_NODE_ADDRESS}/api/transaction-pool-map`}, (error, response, body) => {
+        // NUANCE: Status code of 200 indicates successful request
         if(!error && response.statusCode === 200) {
             const rootTransactionPoolMap = JSON.parse(body);
 
