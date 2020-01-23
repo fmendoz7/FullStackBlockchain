@@ -35,6 +35,12 @@ class PubSub {
 
         const parsedMessage = JSON.parse(message);
 
+        switch(channel) {
+            case CHANNELS.BLOCKCHAIN:
+                this.blockchain.replaceChain(parsedMessage);
+                break;
+        }
+
         //Want strict typecheck, so use ===
         if (channel === CHANNELS.BLOCKCHAIN) {
             this.blockchain.replaceChain(parsedMessage);
