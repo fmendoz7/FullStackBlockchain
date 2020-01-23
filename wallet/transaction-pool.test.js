@@ -29,8 +29,7 @@ describe('TransactionPool', () => {
             transactionPool.setTransaction(transaction);
         });
 
-        expect(
-            transactionPool.existingTransaction({inputAddress: senderWallet.publicKey})
-        ).toBe(transaction);
+        expect(transactionPool.existingTransaction({inputAddress: senderWallet.publicKey}))
+            .toBe(transaction);
     });
 });
