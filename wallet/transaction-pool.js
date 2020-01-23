@@ -12,7 +12,7 @@ class TransactionPool {
     }
 
     setMap(transactionPoolMap) {
-        
+        this.transactionMap = this.transactionMap;
     }
 
     //existingTransaction factory method returns list of transactions from specified address
