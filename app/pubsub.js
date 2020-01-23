@@ -42,7 +42,8 @@ class PubSub {
             case CHANNELS.TRANSACTION:
                 this.transactionPool.setTransaction(parsedMessage);
                 break;
-            
+            default:
+                return;
         }
 
         //Want strict typecheck, so use ===
