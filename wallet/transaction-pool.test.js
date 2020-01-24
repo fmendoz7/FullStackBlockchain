@@ -32,4 +32,20 @@ describe('TransactionPool', () => {
         expect(transactionPool.existingTransaction({inputAddress: senderWallet.publicKey}))
             .toBe(transaction);
     });
+
+    describe('validTransaction()', () => {
+        let validTransactions;
+
+        beforeEach(() => {
+            validTransactions = []
+
+            for(let i = 0; i < 10; i++) {
+                transaction = new Transaction({
+                    senderWallet,
+                    recipient: 'any-recipient',
+                    amount: 30
+                });
+            }
+        })
+    })
 });
