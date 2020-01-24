@@ -1,3 +1,5 @@
+const Transaction = require('./transaction');
+
 //Transaction pool object responsible for transaction records across all ledger instances
 class TransactionPool {
     constructor() {
@@ -23,7 +25,7 @@ class TransactionPool {
     }
 
     validTransactions() {
-        
+
     }
 }
 
