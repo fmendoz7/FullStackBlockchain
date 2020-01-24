@@ -66,6 +66,11 @@ describe('TransactionPool', () => {
             it('returns valid transactions', () => {
                 expect(transactionPool.validTransactions()).toEqual(validTransactions);
             })
+
+            it('logs errors for invalid transactions', () => {
+                transactionPool.validTransactions();
+                expect(errorMock).toHaveBeenCalled();
+            })
         })
     })
 });
