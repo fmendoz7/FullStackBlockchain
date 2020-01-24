@@ -34,10 +34,12 @@ describe('TransactionPool', () => {
     });
 
     describe('validTransaction()', () => {
-        let validTransactions;
+        let validTransactions, errorMock;
 
         beforeEach(() => {
             validTransactions = []
+            errorMock = jest.fn();
+            global.console.error = errorMock;
 
             for(let i = 0; i < 10; i++) {
                 transaction = new Transaction({
