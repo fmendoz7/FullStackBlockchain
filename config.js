@@ -6,6 +6,10 @@ const INITIAL_DIFFICULTY = 3;
 
 const STARTING_BALANCE = 1000;
 
+const REWARD_INPUT = {
+    address: '*authorized-reward'
+};
+
 //variables in all caps represents hard-coded objects
 const GENESIS_DATA = {
     timestamp: 1,
