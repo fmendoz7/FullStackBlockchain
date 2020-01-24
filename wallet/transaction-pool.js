@@ -21,6 +21,10 @@ class TransactionPool {
 
         return transactions.find(transaction => transaction.input.address === inputAddress);
     }
+
+    validTransactions() {
+        
+    }
 }
 
 module.exports = TransactionPool;
