@@ -77,6 +77,10 @@ class Transaction {
 
         return true;
     }
+
+    static rewardTransaction({minerWallet}) {
+        
+    }
 }
 
 module.exports = Transaction;
