@@ -22,5 +22,11 @@ const GENESIS_DATA = {
     //blockNumber: 1
 }; 
 
-module.exports = {GENESIS_DATA, MINE_RATE, STARTING_BALANCE};
+module.exports = {
+    GENESIS_DATA, 
+    MINE_RATE, 
+    STARTING_BALANCE,
+    REWARD_INPUT,
+    MINING_REWARD
+};
     //In this instance, we are exporting sample data to be used in all genesis blocks
