@@ -184,4 +184,10 @@ describe('Transaction', () => {
             })
         });
     });
+
+    describe('rewardTransaction()', () => {
+        let rewardTransaction, minerWallet;
+
+        
+    })
 });
