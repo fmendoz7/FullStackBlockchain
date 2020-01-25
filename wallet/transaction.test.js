@@ -191,6 +191,10 @@ describe('Transaction', () => {
         beforeEach(() => {
             minerWallet = new Wallet();
             rewardTransaction = Transaction.rewardTransaction();
-        });        
+        });    
+        
+        it('creates a transaction iwth the reward input', () => {
+            expect(rewardTransaction.input).toEqual(REWARD_INPUT);
+        })
     })
 });
