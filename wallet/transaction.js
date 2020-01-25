@@ -5,7 +5,7 @@ class Transaction {
     constructor ({senderWallet, recipient, amount, outputMap, input}) {
         this.id = uuid();
         this.outputMap = outputMap || this.createOutputMap({senderWallet, recipient, amount});
-        this.input = this.createInput({senderWallet, outputMap: this.outputMap});
+        this.input = input || this.createInput({senderWallet, outputMap: this.outputMap});
     }
 
     //Constructor-based methods
