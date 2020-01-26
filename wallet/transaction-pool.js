@@ -9,7 +9,7 @@ class TransactionPool {
     }
 
     clear() {
-        
+        this.transactionMap = {}
     }
 
     //setTransaction factory method sets value to transactionMap
