@@ -73,4 +73,8 @@ describe('TransactionPool', () => {
             })
         })
     })
+
+    describe('clear()', () => {
+
+    });
 });
