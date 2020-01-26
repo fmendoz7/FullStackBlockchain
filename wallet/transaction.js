@@ -81,7 +81,7 @@ class Transaction {
 
     static rewardTransaction({minerWallet}) {
         return new this({
-            
+            input: REWARD_INPUT,
         })
     }
 }
