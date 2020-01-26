@@ -80,7 +80,9 @@ class Transaction {
     }
 
     static rewardTransaction({minerWallet}) {
-
+        return new this({
+            
+        })
     }
 }
 
