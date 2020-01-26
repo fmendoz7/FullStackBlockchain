@@ -75,6 +75,8 @@ describe('TransactionPool', () => {
     })
 
     describe('clear()', () => {
-
+        it('clears the transactions', () => {
+            
+        })
     });
 });
