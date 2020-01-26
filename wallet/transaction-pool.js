@@ -8,6 +8,10 @@ class TransactionPool {
         };
     }
 
+    clear() {
+        
+    }
+
     //setTransaction factory method sets value to transactionMap
     setTransaction(transaction) {
         this.transactionMap[transaction.id] = transaction;
