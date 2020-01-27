@@ -92,7 +92,9 @@ describe('TransactionPool', () => {
             const transaction = new Wallet().createTransaction({
                 recipient: 'foo',
                 amount: 20
-            })
+            });
+
+            transactionPool.setTransaction(transaction);
         }
     });
 });
