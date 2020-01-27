@@ -86,5 +86,10 @@ describe('TransactionPool', () => {
         it('clears the pool of any existing blockchain transactions', () => {
             const blockchain = new blockchain();
         });
+
+        for(let i=0; i<6; i++)
+        {
+            
+        }
     });
 });
