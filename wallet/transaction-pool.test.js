@@ -81,4 +81,8 @@ describe('TransactionPool', () => {
             expect(transactionPool.transactionMap).toEqual({})
         })
     });
+
+    describe('clearBlockchainTransactions()', () => {
+        
+    })
 });
