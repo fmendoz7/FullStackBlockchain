@@ -97,7 +97,7 @@ describe('TransactionPool', () => {
             transactionPool.setTransaction(transaction);
             
             if(i % 2 === 0) {
-                blockchain.addBlock({dat})
+                blockchain.addBlock({data: [transaction]})
             }
         }
     });
