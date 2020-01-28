@@ -12,10 +12,8 @@ class Transaction {
     //Constructor-based methods
     createOutputMap({senderWallet, recipient, amount}) {
         const outputMap = {};
-
         outputMap[recipient] = amount;
         outputMap[senderWallet.publicKey] = senderWallet.balance - amount;
-
         return outputMap;
     }
 
