@@ -73,7 +73,6 @@ class Transaction {
             console.error(`Invalid Signature from ${address}`);
             return false;
         }
-
         return true;
     }
 
