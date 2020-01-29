@@ -60,7 +60,7 @@ describe('TransactionPool', () => {
 
                 //If divisble by 2, invalidate by having different wallet sign transaction
                 else if (i%3 ===1) {
-                    transaction.input.signature = new Wallet.sign('foo')
+                    transaction.input.signature = new Wallet().sign('foo')
                 }
 
                 //Else, push a VALID transaction
