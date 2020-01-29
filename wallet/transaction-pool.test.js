@@ -85,20 +85,22 @@ describe('TransactionPool', () => {
     describe('clearBlockchainTransactions()', () => {
         it('clears the pool of any existing blockchain transactions', () => {
             const blockchain = new blockchain();
-        });
+        
 
-        for(let i=0; i<6; i++)
-        {
-            const transaction = new Wallet().createTransaction({
-                recipient: 'foo',
-                amount: 20
-            });
+            for(let i=0; i<6; i++)
+            {
+                const transaction = new Wallet().createTransaction({
+                    recipient: 'foo',
+                    amount: 20
+                });
 
-            transactionPool.setTransaction(transaction);
-            
-            if(i % 2 === 0) {
-                blockchain.addBlock({data: [transaction]})
+                transactionPool.setTransaction(transaction);
+                
+                if(i % 2 === 0) {
+                    blockchain.addBlock({data: [transaction]})
+                }
             }
-        }
+
+        });
     });
 });
