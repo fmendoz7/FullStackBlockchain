@@ -7,6 +7,7 @@ class TransactionMiner {
     }
 
     mineTransactions() {
+        //const validTransactions
         //get transaction pool's valid transactions
     
         //generate miner's reward 
