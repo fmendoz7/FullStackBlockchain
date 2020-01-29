@@ -84,7 +84,7 @@ describe('TransactionPool', () => {
 
     describe('clearBlockchainTransactions()', () => {
         it('clears the pool of any existing blockchain transactions', () => {
-            const blockchain = new blockchain();
+            const blockchain = new Blockchain();
             const expectedTransaction = {}
 
             for(let i=0; i<6; i++)
@@ -98,6 +98,8 @@ describe('TransactionPool', () => {
                 
                 if(i % 2 === 0) {
                     blockchain.addBlock({data: [transaction]})
+                } else {
+                    expectedTransactionMap[transaction.id] = transaction;
                 }
             }
 
