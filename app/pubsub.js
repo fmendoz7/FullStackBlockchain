@@ -40,15 +40,11 @@ class PubSub {
                 this.blockchain.replaceChain(parsedMessage);
                 break;
             case CHANNELS.TRANSACTION:
+                //Set transaction to local transaction pool
                 this.transactionPool.setTransaction(parsedMessage);
                 break;
             default:
                 return;
-        }
-
-        //Want strict typecheck, so use ===
-        if (channel === CHANNELS.BLOCKCHAIN) {
-            this.blockchain.replaceChain(parsedMessage);
         }
     }
 
@@ -93,7 +89,3 @@ class PubSub {
 
 //Commented lower lines in favor of exporting to be used by another class 
 module.exports = PubSub;
-
-//const testPubSub = new PubSub();
-////Set delay of 1000 milliseconds to ensure reliability of firing
-//setTimeout(() => testPubSub.publisher.publish(CHANNELS.TEST, 'foo'), 1000);

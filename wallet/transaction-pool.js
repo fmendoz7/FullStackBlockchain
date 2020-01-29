@@ -24,7 +24,6 @@ class TransactionPool {
     //existingTransaction factory method returns list of transactions from specified address
     existingTransaction({inputAddress}) {
         const transactions = Object.values(this.transactionMap);
-
         return transactions.find(transaction => transaction.input.address === inputAddress);
     }
 
