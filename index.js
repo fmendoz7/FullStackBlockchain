@@ -73,7 +73,7 @@ app.get('/api/transaction-pool-map', (req, res) => {
     res.json(transactionPool.transactionMap);
 })
 
-//METHOD: Syncs chains from various instances
+//METHOD: Syncs chains from ROOT state 
 const syncWithRootState = () => {
     request({ url: `${ROOT_NODE_ADDRESS}/api/blocks` }, (error, response, body) => {
         //Status Code of 200 indicates success

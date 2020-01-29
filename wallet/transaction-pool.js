@@ -17,8 +17,8 @@ class TransactionPool {
         this.transactionMap[transaction.id] = transaction;
     }
 
-    setMap(transactionPoolMap) {
-        this.transactionMap = this.transactionMap;
+    setMap(transactionMap) {
+        this.transactionMap = transactionMap;
     }
 
     //existingTransaction factory method returns list of transactions from specified address
