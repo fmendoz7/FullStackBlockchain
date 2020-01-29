@@ -34,8 +34,8 @@ class TransactionPool {
         });
     }
 
-    clearBlockchainTransaction() {
-        
+    clearBlockchainTransaction({chain}) {
+
     }
 }
 
