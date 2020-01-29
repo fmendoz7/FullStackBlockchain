@@ -33,6 +33,10 @@ class TransactionPool {
             transaction => Transaction.validTransaction(transaction)
         });
     }
+
+    clearBlockchainTransaction() {
+        
+    }
 }
 
 module.exports = TransactionPool;
