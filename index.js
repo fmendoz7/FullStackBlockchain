@@ -47,15 +47,12 @@ app.post('/api/transact', (req, res) => {
     const {amount, recipient} = req.body;
 
     //Using 'let' so that transaction is dynamic to entire method
-    let transaction = transactionPool
-        .existingTransaction({inputAdress: wallet.publicKey});
+    let transaction = transactionPool.existingTransaction({ inputAdress: wallet.publicKey });
 
     try {
         if(transaction) {
             transaction.update({senderWallet: wallet, recipient, amount}); 
-        }
-
-        else {
+        } else {
             transaction = wallet.createTransaction({recipient, amount});
         }
     }

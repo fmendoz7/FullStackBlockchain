@@ -1,6 +1,6 @@
 const uuid = require('uuid/v1');
-const {verifySignature} = require('../util');
-const {REWARD_INPUT, MINING_REWARD} = require('../config')
+const { verifySignature } = require('../util');
+const { REWARD_INPUT, MINING_REWARD } = require('../config')
 
 class Transaction {
     constructor ({senderWallet, recipient, amount, outputMap, input}) {
@@ -76,10 +76,10 @@ class Transaction {
         return true;
     }
 
-    static rewardTransaction({minerWallet}) {
+    static rewardTransaction({ minerWallet }) {
         return new this({
             input: REWARD_INPUT,
-            outputMap: {[minerWallet.publicKey]: MINING_REWARD}
+            outputMap: { [minerWallet.publicKey]: MINING_REWARD}
         });
     }
 }

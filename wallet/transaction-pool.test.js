@@ -5,6 +5,7 @@ const Wallet = require('./index');
 describe('TransactionPool', () => {
     let transactionPool, transaction, senderWallet;
 
+    // Set transactionPool and transaction should be set to proper instances
     beforeEach(() => {
         transactionPool = new TransactionPool();
         senderWallet = new Wallet();
@@ -19,6 +20,7 @@ describe('TransactionPool', () => {
         it('adds a transaction', () => {
             transactionPool.setTransaction(transaction);
 
+            // .toBe ensures that you are checking the ORIGINAL instance in Jest
             expect(transactionPool.transactionMap[transaction.id])
                 .toBe(transaction);
         });
@@ -28,11 +30,9 @@ describe('TransactionPool', () => {
         it('returns an existing transaction given an input address', () => {
             transactionPool.setTransaction(transaction);
         
-
             expect(
                 transactionPool.existingTransaction({ inputAddress: senderWallet.publicKey })
             ).toBe(transaction);
-
         });
     });
 
@@ -87,7 +87,7 @@ describe('TransactionPool', () => {
 
     describe('clearBlockchainTransactions()', () => {
         it('clears the pool of any existing blockchain transactions', () => {
-            const blockchain = new Blockchain();
+            const blockchain = new blockchain();
             const expectedTransaction = {}
 
             for(let i=0; i<6; i++)
