@@ -104,7 +104,7 @@ describe('TransactionPool', () => {
             }
 
             transactionPool.clearBlockchainTransactions({chain: blockchain.chain});
-
+            expect(transactionPool.transactionMap).toEqual(expectedTransactionMap);
         });
     });
 });
