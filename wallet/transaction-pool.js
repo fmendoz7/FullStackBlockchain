@@ -3,9 +3,7 @@ const Transaction = require('./transaction');
 //Transaction pool object responsible for transaction records across all ledger instances
 class TransactionPool {
     constructor() {
-        this.transactionMap = {
-
-        };
+        this.transactionMap = {};
     }
 
     clear() {
@@ -28,9 +26,9 @@ class TransactionPool {
     }
 
     validTransactions() {
-        return Object.values(this.transactionMap).filter(() => {
+        return Object.values(this.transactionMap).filter(
             transaction => Transaction.validTransaction(transaction)
-        });
+        );
     }
 
     clearBlockchainTransaction({chain}) {

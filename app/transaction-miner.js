@@ -6,6 +6,7 @@ class TransactionMiner {
         this.pubsub = pubsub;
     }
 
+    // (!!!) WARNING: Method currently undefined 
     mineTransactions() {
         //const validTransactions
         //get transaction pool's valid transactions

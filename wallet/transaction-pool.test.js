@@ -40,10 +40,11 @@ describe('TransactionPool', () => {
         let validTransactions, errorMock;
 
         beforeEach(() => {
-            validTransactions = []
+            validTransactions = [];
             errorMock = jest.fn();
             global.console.error = errorMock;
 
+            //Iterate through loop to instantiate new transactions 
             for(let i = 0; i < 10; i++) {
                 transaction = new Transaction({
                     senderWallet,
@@ -51,14 +52,17 @@ describe('TransactionPool', () => {
                     amount: 30
                 });
 
+                //If divisible by 3, invalidate by having unacceptably obscene amount of currency
                 if(i%3===0) {
                     transaction.input.amount = 999999;
                 }
 
+                //If divisble by 2, invalidate by having different wallet sign transaction
                 else if (i%3 ===1) {
                     transaction.input.signature = new Wallet.sign('foo')
                 }
 
+                //Else, push a VALID transaction
                 else {
                     validTransactions.push(transaction);
                 }
