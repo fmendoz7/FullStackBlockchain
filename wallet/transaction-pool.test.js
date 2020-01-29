@@ -70,16 +70,17 @@ describe('TransactionPool', () => {
 
                 transactionPool.setTransaction(transaction)
             }
+        });
 
             it('returns valid transactions', () => {
                 expect(transactionPool.validTransactions()).toEqual(validTransactions);
-            })
+            });
 
             it('logs errors for invalid transactions', () => {
                 transactionPool.validTransactions();
                 expect(errorMock).toHaveBeenCalled();
-            })
-        })
+            });
+        
     })
 
     describe('clear()', () => {
@@ -87,7 +88,7 @@ describe('TransactionPool', () => {
             transactionPool.clear();
 
             expect(transactionPool.transactionMap).toEqual({});
-        })
+        });
     });
 
     describe('clearBlockchainTransactions()', () => {
