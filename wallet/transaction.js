@@ -4,7 +4,12 @@ const { REWARD_INPUT, MINING_REWARD } = require('../config')
 
 class Transaction {
     constructor ({senderWallet, recipient, amount, outputMap, input}) {
+            //Constructor includes hard-coded outputMap & input values to be called
+            //within special rewardTransaction method for a NEW outputMap instance
         this.id = uuid();
+
+        //Respective definitions either choose hard-coded values for rewardTransaction
+        //OR it creates new outputMap based on the REST of those parameters
         this.outputMap = outputMap || this.createOutputMap({senderWallet, recipient, amount});
         this.input = input || this.createInput({senderWallet, outputMap: this.outputMap});
     }

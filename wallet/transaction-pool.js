@@ -31,7 +31,7 @@ class TransactionPool {
         );
     }
 
-    clearBlockchainTransaction({chain}) {
+    clearBlockchainTransactions({chain}) {
         for (let i = 1; i < chain.length; i++) {
             const block = chain[i];
 

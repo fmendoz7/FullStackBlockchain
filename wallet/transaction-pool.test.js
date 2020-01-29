@@ -1,6 +1,7 @@
 const TransactionPool = require('./transaction-pool');
 const Transaction = require('./transaction');
 const Wallet = require('./index');
+const Blockchain = require('../blockchain');
 
 describe('TransactionPool', () => {
     let transactionPool, transaction, senderWallet;
@@ -85,13 +86,13 @@ describe('TransactionPool', () => {
         it('clears the transactions', () => {
             transactionPool.clear();
 
-            expect(transactionPool.transactionMap).toEqual({})
+            expect(transactionPool.transactionMap).toEqual({});
         })
     });
 
     describe('clearBlockchainTransactions()', () => {
         it('clears the pool of any existing blockchain transactions', () => {
-            const blockchain = new blockchain();
+            const blockchain = new Blockchain();
             const expectedTransaction = {}
 
             for(let i=0; i<6; i++)
