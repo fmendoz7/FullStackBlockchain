@@ -8,16 +8,23 @@ class TransactionMiner {
 
     // (!!!) WARNING: Method currently undefined 
     mineTransactions() {
-        //const validTransactions
+        
         //get transaction pool's valid transactions
-    
-        //generate miner's reward 
+        const validTransactions = this.transactionPool.validTransactions();
+        
+        //generate miner's reward
+        validTransactions.push(
+            Transactions.rewardTransaction({minerWallet: this.wallet})
+        );
 
         //append block consisting of transactions to blockchain
+        this.blockchain.addBlock({data: validTransactions});
 
         //broadcast updated blockchain
+        this.pubsub.broadcastChain();
 
         //clear pool
+        this.transactionPool.clear();
     }
 }
 

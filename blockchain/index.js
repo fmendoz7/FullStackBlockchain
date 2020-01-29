@@ -62,8 +62,7 @@ class Blockchain {
         return true;
     }
 
-    replaceChain(paramchain) {
-        //Can use for-loop to copy contents into new Chain
+    replaceChain(paramchain, onSuccess) {
         //REM: Data structure for blockchain is (dynamic) ARRAY of blocks, linked by hashes 
             //Linked-list like structure, but you are also given `indices` in the form of block number
         
@@ -81,6 +80,11 @@ class Blockchain {
             return;
         }
 
+        //onSuccess is a callback method if you make it to a successful chain replacement
+        if(onSuccess) {
+            onSuccess();
+        }
+        
         console.log('SUCCESS: Replacing chain with new instance');
         this.chain = paramchain;
     }
