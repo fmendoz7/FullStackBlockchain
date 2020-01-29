@@ -1,14 +1,16 @@
 //Essentially, config.js is where you store hard-coded and global values
 
+//1000 ms for the generation of every new block
 const MINE_RATE = 1000;
-    //1000 ms for the generation of every new block
 const INITIAL_DIFFICULTY = 3;
 
 const STARTING_BALANCE = 1000;
 
 const REWARD_INPUT = {
-    address: '*authorized-reward'
+    address: '*authorized-reward*'
 };
+
+//Miner will receive 50 coins
 const MINING_REWARD = 50;
 
 //variables in all caps represents hard-coded objects
