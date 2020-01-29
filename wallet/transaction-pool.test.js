@@ -103,6 +103,8 @@ describe('TransactionPool', () => {
                 }
             }
 
+            transactionPool.clearBlockchainTransactions({chain: blockchain.chain});
+
         });
     });
 });
