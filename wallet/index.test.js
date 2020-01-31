@@ -1,6 +1,6 @@
 const Wallet = require('./index');
 const Transaction = require('./transaction');
-const {verifySignature} = require('../util');
+const { verifySignature } = require('../util');
 const Blockchain = require('../blockchain');
 const { STARTING_BALANCE } = require('../config');
 
