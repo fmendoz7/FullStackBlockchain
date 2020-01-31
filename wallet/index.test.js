@@ -128,8 +128,8 @@ describe('Wallet', () => {
                     STARTING_BALANCE +
                     transactionOne.outputMap[wallet.publicKey] + 
                     transactionTwo.outputMap[wallet.publicKey]
-                )
-            })
+                );
+            });
         });
     })
 });
