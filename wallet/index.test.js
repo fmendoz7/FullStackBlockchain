@@ -149,6 +149,28 @@ describe('Wallet', () => {
                     transactionTwo.outputMap[wallet.publicKey]
                 );
             });
+
+            describe('and the wallet has made a transaction', () => {
+                let recentTransaction;
+
+                beforeEach(() => {
+                    recentTransaction = wallet.createTransaction({
+                        recipient: 'foo-address',
+                        amount: 30
+                    });
+
+                    blockchain.addBlock({data: [recentTransaction] });
+                });
+
+                it('returns the output amount of the recent transaction', () => {
+                    expect(
+                        Wallet.calculateBalance({
+                            chain: blockchain.chain, 
+                            address: wallet.publicKey
+                        })
+                    ).toEqual(recentTransaction.outputMap[wallet.publicKey]);
+                })
+            })
         });
     });
 });
