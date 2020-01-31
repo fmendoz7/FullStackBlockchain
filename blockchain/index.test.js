@@ -192,7 +192,7 @@ describe('Blockchain', () => {
         let transaction, rewardTransaction, wallet;
 
         beforeEach(() => {
-            wallet = new wallet();
+            wallet = new Wallet();
             transaction = wallet.createTransaction({ recipient: 'foo-address', amount: 65});
             rewardTransaction = Transaction.rewardTransaction({ minerWallet: wallet });
         });
@@ -200,6 +200,7 @@ describe('Blockchain', () => {
         describe('and the transaction data is valid', () => {
             it('returns true', () => {
                 newChain.addBlock({ data: [transaction, rewardTransaction] });
+                
                 expect(blockchain.validTransactionData({ chain: newChain.chain })).toBe(true);           
             });
         });
@@ -207,7 +208,7 @@ describe('Blockchain', () => {
         describe('and the transaction data has multiple rewards', () => {
             it('returns false', () => {
                 newChain.addBlock({data: [transaction, rewardTransaction, rewardTransaction] })
-                expect(blockchain.validTransactionData({ chain: newChain.chain })).toBe(true);           
+                expect(blockchain.validTransactionData({ chain: newChain.chain })).toBe(false);           
             });
         });
 
@@ -216,12 +217,16 @@ describe('Blockchain', () => {
                 it('returns false', () => {
                     transaction.outputMap[wallet.publicKey] = 999999;
                     newChain.addBlock({data: [transaction, rewardTransaction] });
-                    expect(blockchain.validTransactionData({ chain: newChain.chain })).toBe(true);           
+                    expect(blockchain.validTransactionData({ chain: newChain.chain })).toBe(false);           
                 });
             });
 
             describe('and the transaction is a reward transaction', () => {
-                it('returns false', () => {});
+                it('returns false', () => {
+                    rewardTransaction.outputMap[wallet.publicKey] = 999999;
+                    newChain.addBlock({data: [transaction, rewardTransaction] });
+                    expect(blockchain.validTransactionData({chain: newChain.chain})).toBe(false);
+                });
             });
         });
 
