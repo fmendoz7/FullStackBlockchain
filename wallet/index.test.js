@@ -115,10 +115,11 @@ describe('Wallet', () => {
                 });
 
                 //Append these two transactions to blockchain
-                blockchain.addBlock({data: [transactionOne, trnasactionTwo]});
+                blockchain.addBlock({data: [transactionOne, transactionTwo]});
             });
 
-            it('adds the sume of all outputs to the wallet balance', () => {
+            //Test should be AFTER beforeEach
+            it('adds the sum of all outputs to the wallet balance', () => {
                 expect(
                     Wallet.calculateBalance({
                         chain: blockchain.chain,
@@ -131,5 +132,5 @@ describe('Wallet', () => {
                 );
             });
         });
-    })
+    });
 });
