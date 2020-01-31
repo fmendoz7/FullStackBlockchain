@@ -64,3 +64,5 @@ Explanation **(WIP)**: Full-Stack Application of Blockchain and paired cryptocur
 	10. uuid (v3.3.2)
 
 	11. parcel-bundler (v1.10.3, save flag)
+
+	12. babel (various versions & subcomponents, save flag)
