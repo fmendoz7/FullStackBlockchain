@@ -2,6 +2,7 @@
 const bodyParser = require('body-parser');
 const express = require('express');
 const request = require('request');
+const path = require('path');
 
 //Local file dependencies
 const Blockchain = require('./blockchain');
@@ -25,6 +26,7 @@ const ROOT_NODE_ADDRESS = `http://localhost:${DEFAULT_PORT}`;
 //setTimeout(() => pubsub.broadcastChain(), 1000);
 
 app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, 'client/dist')));
 
 //GET HTTP requests are designed to read data from the backend
 app.get('/api/blocks', (req, res) => {
@@ -94,6 +96,11 @@ app.get('/api/wallet-info', (req, res) => {
         balance: Wallet.calculateBalance({ chain: blockchain.chain, address })
     });
 });
+
+//API: GET in order to interact with frontend HTML
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client/dist/index.html'));
+})
 
 //METHOD: Syncs chains from ROOT state 
 const syncWithRootState = () => {
