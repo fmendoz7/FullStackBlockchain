@@ -82,6 +82,7 @@ describe('Wallet', () => {
         describe('and a chain is passed', () => {
             it('calls `Wallet.calculateBalance`', () => {
                 const calculateBalanceMock = jest.fn();
+                const originalCalculateBalance = Wallet.calculateBalance;
 
                 Wallet.calculateBalance = calculateBalanceMock;
 
@@ -92,6 +93,7 @@ describe('Wallet', () => {
                 });
 
                 expect(calculateBalanceMock).toHaveBeenCalled();
+                Wallet.calculateBalance = originalCalculateBalance;
             });
         });
     });
