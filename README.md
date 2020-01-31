@@ -1,4 +1,4 @@
-# FullStackBlockchain
+# Full Stack Blockchain
 
 ### NOTE: Project still under development (WIP)
 Explanation **(WIP)**: Full-Stack Application of Blockchain and paired cryptocurrency, implemented almost entirely from scratch using Javascript and cryptographic Javascript libraries 
@@ -24,12 +24,12 @@ Explanation **(WIP)**: Full-Stack Application of Blockchain and paired cryptocur
 
 	4. ***(COMPLETED 1/31/2020)*** Cryptocurrency and linked wallet functionality
 
-	5. React FrontEnd 
+	5. React Blockchain Explorer FrontEnd 
   
   * **Technologies:**
 	1. NodeJS
 	
-	2. React (v16.6.0)
+	2. React (v16.6.0, save flag)
 	
 	3. Heroku
 	
@@ -59,8 +59,8 @@ Explanation **(WIP)**: Full-Stack Application of Blockchain and paired cryptocur
 
 	8. request (v2.88.0)
 	
-	9. elliptic cryptographic library(v6.4.1)
+	9. elliptic cryptographic library (v6.4.1)
 
 	10. uuid (v3.3.2)
 
-	11. parcel-bundler (v1.10.3)
+	11. parcel-bundler (v1.10.3, save flag)
