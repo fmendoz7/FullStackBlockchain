@@ -1,7 +1,7 @@
 # FullStackBlockchain
 
 ### NOTE: Project still under development (WIP)
-Explanation **(WIP)**: Full-Stack Application of Blockchain and paired cryptocurrency, implemented from scratch using Javascript and cryptographic Javascript libraries 
+Explanation **(WIP)**: Full-Stack Application of Blockchain and paired cryptocurrency, implemented almost entirely from scratch using Javascript and cryptographic Javascript libraries 
 
   * ***Purpose:***
 	> Build a traditional, proof-of-work Blockchain with supported cryptocurrency for secure, peer-to-peer transactions, entirely from scratch using Javascript
@@ -23,6 +23,8 @@ Explanation **(WIP)**: Full-Stack Application of Blockchain and paired cryptocur
 	3. ***(COMPLETED 1/14/2020)*** PubSub protocol for asynchronous communication 
 
 	4. Cryptocurrency and linked wallet functionality
+
+	5. React FrontEnd 
   
   * **Technologies:**
 	1. NodeJS
@@ -60,9 +62,3 @@ Explanation **(WIP)**: Full-Stack Application of Blockchain and paired cryptocur
 	9. elliptic cryptographic library(v6.4.1)
 
 	10. uuid (v3.3.2)
-
-To run the unit tests found within the various test.js files, type:
-  > npm run test
-  
-To determine timestamp calculation and difficulty of impending blocks using the Proof-Of-Work Blockchain, type:
-  > node average-work.js
