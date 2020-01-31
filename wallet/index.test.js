@@ -169,8 +169,30 @@ describe('Wallet', () => {
                             address: wallet.publicKey
                         })
                     ).toEqual(recentTransaction.outputMap[wallet.publicKey]);
+                });
+
+                describe('and there are outputs next to and after the recent transaction', () => {
+                    let sameBlockTransaction, nextBlockTransaction;
+
+                    beforeEach(() => {
+                        recentTransaction = wallet.createTransaction({
+                            recipient: 'later-foo-address',
+                            amount: 60
+                        });
+
+                        sameBlockTransaction = Transaction.rewardTransaction({minerWallet: wallet});
+
+                        blockchain.addBlock({data: [recentTransaction, sameBlockTransaction] });  
+                        
+                        nextBlockTransaction = new Wallet().createTransaction({
+                            recipient: wallet.publicKey, 
+                            amount: 75
+                        });
+
+                        blockchain.addBlock({ data: [nextBlockTransaction] });
+                    })
                 })
-            })
+            });
         });
     });
 });
