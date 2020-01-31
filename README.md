@@ -1,4 +1,4 @@
-# Full Stack Blockchain
+# Custom Full Stack PoW Blockchain
 
 ### NOTE: Project still under development (WIP)
 Explanation **(WIP)**: Full-Stack Application of Blockchain and paired cryptocurrency, implemented almost entirely from scratch using Javascript and cryptographic Javascript libraries 
