@@ -22,7 +22,7 @@ Explanation **(WIP)**: Full-Stack Application of Blockchain and paired cryptocur
 	
 	3. ***(COMPLETED 1/14/2020)*** PubSub protocol for asynchronous communication 
 
-	4. Cryptocurrency and linked wallet functionality
+	4. ***(COMPLETED 1/31/2020)*** Cryptocurrency and linked wallet functionality
 
 	5. React FrontEnd 
   

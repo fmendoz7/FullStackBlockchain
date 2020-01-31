@@ -24,6 +24,7 @@ class Blockchain {
     validTransactionData({chain}) {
         for (let i=1; i<chain.length; i++) {
             const block = chain[i];
+            const transactionSet=  new Set();
             let rewardTransactionCount = 0;
 
             for (let transaction of block.data) {
@@ -55,6 +56,15 @@ class Blockchain {
                     if(transaction.input.amount !== trueBalance) {
                         console.error('Invalid input amount');
                         return false;
+                    }
+
+                    if(transactionSet.has(transaction)) {
+                        console.error('An identical transaction appears more than once in the block');
+                        return false;
+                    } 
+                    
+                    else {
+                        transactionSet.add(transaction);
                     }
                 }
             }
@@ -107,7 +117,7 @@ class Blockchain {
         return true;
     }
 
-    replaceChain(paramchain, onSuccess) {
+    replaceChain(paramchain, validateTransactions, onSuccess) {
         //REM: Data structure for blockchain is (dynamic) ARRAY of blocks, linked by hashes 
             //Linked-list like structure, but you are also given `indices` in the form of block number
         
@@ -122,6 +132,11 @@ class Blockchain {
         if(!Blockchain.isValidChain(paramchain))
         {
             console.error('ERROR: Incoming chain is INVALID!');
+            return;
+        }
+
+        if(validateTransactions && !this.validTransactionData({ paramchain })) {
+            console.error('The incoming chain has invalid data');
             return;
         }
 
