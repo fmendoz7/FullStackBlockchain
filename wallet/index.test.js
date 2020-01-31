@@ -190,8 +190,21 @@ describe('Wallet', () => {
                         });
 
                         blockchain.addBlock({ data: [nextBlockTransaction] });
-                    })
-                })
+                    });
+
+                    it('includes the output amounts in the returned balance', () => {
+                        expect(
+                            Wallet.calculateBalance({
+                                chain: blockchain.chain,
+                                address: wallet.publicKey
+                            })
+                        ).toEqual(
+                            recentTransaction.outputMap[wallet.publicKey] + 
+                            sameBlockTransaction.outputMap[wallet.publicKey] + 
+                            nextBlockTransaction.outputMap[wallet.publicKey]
+                        );
+                    });
+                });
             });
         });
     });
