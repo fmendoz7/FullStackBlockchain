@@ -19,7 +19,7 @@ class App extends Component {
                 <img className = 'logo' src = {logo}></img>
                 <br />
                 <div>
-                    Welcome To The Firmament Blockchain...
+                ⎯⎯⎯⎯⎯  A SCALABLE, SECURE BLOCKCHAIN PLATFORM FOR IOT  ⎯⎯⎯⎯⎯
                 </div>
                 <br />
                 <div className = 'WalletInfo'>
