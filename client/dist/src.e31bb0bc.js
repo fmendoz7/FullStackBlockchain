@@ -23267,7 +23267,7 @@ function (_Component) {
         src: _logo.default
       }), _react.default.createElement("br", null), _react.default.createElement("div", null, "\u23AF\u23AF\u23AF\u23AF\u23AF  A SCALABLE, SECURE BLOCKCHAIN PLATFORM FOR IOT  \u23AF\u23AF\u23AF\u23AF\u23AF"), _react.default.createElement("br", null), _react.default.createElement("div", {
         className: "WalletInfo"
-      }, _react.default.createElement("div", null, "Address: ", address, " "), _react.default.createElement("div", null, "Balance: ", balance, " ")), _react.default.createElement("br", null), _react.default.createElement(_Blocks.default, null));
+      }, _react.default.createElement("div", null, "ADDRESS: ", address, " "), _react.default.createElement("div", null, "BALANCE: ", balance, " ")), _react.default.createElement("br", null), _react.default.createElement(_Blocks.default, null));
     }
   }]);
 
@@ -23389,7 +23389,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50476" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50846" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

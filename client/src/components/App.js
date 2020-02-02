@@ -23,8 +23,8 @@ class App extends Component {
                 </div>
                 <br />
                 <div className = 'WalletInfo'>
-                    <div>Address: {address} </div>
-                    <div>Balance: {balance} </div>
+                    <div>ADDRESS: {address} </div>
+                    <div>BALANCE: {balance} </div>
                 </div>
                 <br/>
                 <Blocks/>
