@@ -19,7 +19,7 @@ class App extends Component {
                 <img className = 'logo' src = {logo}></img>
                 <br />
                 <div>
-                ⎯⎯⎯⎯⎯  A SCALABLE, SECURE BLOCKCHAIN PLATFORM FOR IOT  ⎯⎯⎯⎯⎯
+                ⎯⎯⎯⎯⎯  A PROOF-OF-WORK BLOCKCHAIN, MADE FROM SCRATCH IN JAVASCRIPT  ⎯⎯⎯⎯⎯
                 </div>
                 <br />
                 <div className = 'WalletInfo'>
