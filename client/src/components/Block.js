@@ -7,7 +7,9 @@ class Block extends Component {
         const hashDisplay = `${hash.substring(0,15)}...`;
         const stringifiedData = JSON.stringify(data);
 
-        const dataDisplay = `${stringifiedData.substring(0,15)}...`;
+        const dataDisplay = stringifiedData.length > 35 ?
+            `${stringifiedData.substring(0,15)}...`:
+            stringifiedData;
     }
 };
 
