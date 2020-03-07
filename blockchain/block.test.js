@@ -1,43 +1,28 @@
-//hexToBinary from libraries instead of local files 
 const hexToBinary = require('hex-to-binary');
-
-//Require statement basically accesses another file
 const Block = require('./block');
-const {cryptoHash} = require('../util');
 const { GENESIS_DATA, MINE_RATE } = require('../config');
+const { cryptoHash } = require('../util');
 
 describe('Block', () => {
     const timestamp = 2000;
-        //provide valid millisecond value for timestamp
-   const lastHash = 'foo-hash';
-   const hash = 'bar-hash';
-   const data = ['blockchain', 'data'];
+    const lastHash = 'foo-hash';
+    const hash = 'bar-hash';
+    const data = ['blockchain', 'data'];
     const nonce = 1;
     const difficulty = 1;
-   //If key and value are the same, can just call the value outright
-   const block = new Block ({
-       timestamp,
-       lastHash,
-       hash,
-       data,
-       nonce,
-       difficulty
-        //ERROR: FORGOT TO ADD NONCE AND DIFFICULTY AS PART OF TEST FILE
-   });
+    const block = new Block({ timestamp, lastHash, hash, data, nonce, difficulty });
 
-   it('has a timestamp, lastHash, hash, and data property', () => {
-       expect(block.timestamp).toEqual(timestamp);
-       expect(block.lastHash).toEqual(lastHash);
-       expect(block.hash).toEqual(hash);
-       expect(block.data).toEqual(data);
-       expect(block.nonce).toEqual(nonce);
-       expect(block.difficulty).toEqual(difficulty);
-   });
+    it('has a timestamp, lastHash, hash, and data property', () => {
+        expect(block.timestamp).toEqual(timestamp);
+        expect(block.lastHash).toEqual(lastHash);
+        expect(block.hash).toEqual(hash);
+        expect(block.data).toEqual(data);
+        expect(block.nonce).toEqual(nonce);
+        expect(block.difficulty).toEqual(difficulty);
+    });
 
     describe('genesis()', () => {
         const genesisBlock = Block.genesis();
-
-        //console.log('genesisBlock', genesisBlock);
 
         it('returns a Block instance', () => {
             expect(genesisBlock instanceof Block).toBe(true);
@@ -46,84 +31,71 @@ describe('Block', () => {
         it('returns the genesis data', () => {
             expect(genesisBlock).toEqual(GENESIS_DATA);
         });
-
     });
 
     describe('mineBlock()', () => {
         const lastBlock = Block.genesis();
         const data = 'mined data';
-        const mineBlock = Block.mineBlock({lastBlock, data});
-    
+        const minedBlock = Block.mineBlock({ lastBlock, data });
+
         it('returns a Block instance', () => {
-            expect(mineBlock instanceof Block).toBe(true);
+            expect(minedBlock instanceof Block).toBe(true);
         });
 
-        it('sets the `lastHash` to be the `Hash` of the lastBlock', () => {
-            expect(mineBlock.lastHash).toEqual(lastBlock.hash);
-                //Critical for linking block data structures to create block 'chain'
+        it('sets the `lastHash` to be the `hash` of the lastBlock', () => {
+            expect(minedBlock.lastHash).toEqual(lastBlock.hash);
         });
 
         it('sets the `data`', () => {
-            expect(mineBlock.data).toEqual(data);
+            expect(minedBlock.data).toEqual(data);
         });
 
         it('sets a `timestamp`', () => {
-            expect(mineBlock.timestamp).not.toEqual(undefined);
-                //That is a SHIT test. IRL, you'd want to have timestamp increment from previous
+            expect(minedBlock.timestamp).not.toEqual(undefined);
         });
 
-        it('creates a SHA-256 `hash` based on proper inputs', () => {
-            expect(mineBlock.hash)
+        it('creates a SHA-256 `hash` based on the proper inputs', () => {
+            expect(minedBlock.hash)
                 .toEqual(
-                cryptoHash(
-                    mineBlock.timestamp,
-                    mineBlock.nonce,
-                    mineBlock.difficulty,
-                    lastBlock.hash,
-                    data
-                )
-             );
+                    cryptoHash(
+                        minedBlock.timestamp,
+                        minedBlock.nonce,
+                        minedBlock.difficulty,
+                        lastBlock.hash,
+                        data
+                    )
+                );
         });
 
         it('sets a `hash` that matches the difficulty criteria', () => {
-            expect(hexToBinary(mineBlock.hash).substring(0, mineBlock.difficulty))
-                .toEqual('0'.repeat(mineBlock.difficulty));
+            expect(hexToBinary(minedBlock.hash).substring(0, minedBlock.difficulty))
+                .toEqual('0'.repeat(minedBlock.difficulty));
         });
 
         it('adjusts the difficulty', () => {
             const possibleResults = [lastBlock.difficulty + 1, lastBlock.difficulty - 1];
 
-            expect(possibleResults.includes(mineBlock.difficulty)).toBe(true);
+            expect(possibleResults.includes(minedBlock.difficulty)).toBe(true);
         });
     });
 
     describe('adjustDifficulty()', () => {
-
-        //Decrease MINE_RATE by 100 ms to INCREASE difficulty by 1 level  
-        it('raises the difficulty for a quickly-mined block', () => {
+        it('raises the difficulty for a quickly mined block', () => {
             expect(Block.adjustDifficulty({
-                originalBlock: block,
-                timestamp: block.timestamp + MINE_RATE - 100
+                originalBlock: block, timestamp: block.timestamp + MINE_RATE - 100
             })).toEqual(block.difficulty + 1);
         });
 
-        //Increase MINE_RATE by 100 ms to DECREASE difficulty by 1 LEVEL
-        it('lowers the difficulty for a slowly-mined block', () => {
+        it('lowers the difficulty for a slowly mined block', () => {
             expect(Block.adjustDifficulty({
-                originalBlock: block,
-                timestamp: block.timestamp + MINE_RATE + 100
+                originalBlock: block, timestamp: block.timestamp + MINE_RATE + 100
             })).toEqual(block.difficulty - 1);
         });
 
-        it('nevers drops below lower difficulty limit of 1', () => {
+        it('has a lower limit of 1', () => {
             block.difficulty = -1;
 
-            //In this case, 1 is int-based boolean replacement for "true"
             expect(Block.adjustDifficulty({ originalBlock: block })).toEqual(1);
-        })
+        });
     });
 });
-
-//Callback functionality written in () => 
-//expect() contains the value you're actually checking
-//toEqual contains the value you IDEALLY want to check

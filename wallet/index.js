@@ -1,10 +1,6 @@
-//Pull libraries and objects that are already in the directory
-    //{} tells you to agnostically look for that object listed somewhere in directory
-const {STARTING_BALANCE } = require('../config');
-const {ec, cryptoHash} = require('../util');
-
-//Pull local dependencies
 const Transaction = require('./transaction');
+const { STARTING_BALANCE } = require('../config');
+const { ec, cryptoHash } = require('../util');
 
 class Wallet {
     constructor() {
@@ -16,53 +12,49 @@ class Wallet {
     }
 
     sign(data) {
-        //Ensures we are signing on an optimized hash version of the data
-        //ERRATA: References the same underlying hash object (outputMap)
-            // 
-        return this.keyPair.sign(cryptoHash(data));
+        return this.keyPair.sign(cryptoHash(data))
     }
 
-    createTransaction({recipient, amount, chain}) {
-        if(chain) {
+    createTransaction({ recipient, amount, chain }) {
+        if (chain) {
             this.balance = Wallet.calculateBalance({
                 chain,
                 address: this.publicKey
             });
         }
 
-        if(amount > this.balance) {
-            throw new Error('ERROR: Amount exceeds balance');
+        if (amount > this.balance) {
+            throw new Error('Amount exceeds balance');
         }
 
-        //`: this` shorthand to designate local senderWallet instance
-        return new Transaction({senderWallet: this, recipient, amount});
+        return new Transaction({ senderWallet: this, recipient, amount });
     }
 
-    static calculateBalance({chain, address}) {
+    static calculateBalance({ chain, address }) {
         let hasConductedTransaction = false;
         let outputsTotal = 0;
 
-        for(let i = chain.length-1; i > 0; i--) {
+        for (let i = chain.length - 1; i > 0; i--) {
             const block = chain[i];
 
             for (let transaction of block.data) {
-                if(transaction.input.address === address) {
+                if (transaction.input.address === address) {
                     hasConductedTransaction = true;
                 }
 
                 const addressOutput = transaction.outputMap[address];
 
-                if(addressOutput) {
+                if (addressOutput) {
                     outputsTotal = outputsTotal + addressOutput;
                 }
             }
 
-            if(hasConductedTransaction) {
+            if (hasConductedTransaction) {
                 break;
             }
         }
 
-        return hasConductedTransaction ? outputsTotal: STARTING_BALANCE + outputsTotal;
+        return hasConductedTransaction ? outputsTotal : STARTING_BALANCE + outputsTotal;
     }
 };
 
