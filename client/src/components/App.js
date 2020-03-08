@@ -3,7 +3,8 @@ import Blocks from './Blocks';
 import logo from '../assets/logo.png';
 
 class App extends Component {
-    state = { walletInfo: {address: 'fooxv6', balance: 9999}};
+    //state = { walletInfo: {address: 'fooxv6', balance: 9999}};
+    state = { walletInfo: {} };
 
     componentDidMount() {
         fetch('http://localhost:3000/api/wallet-info')
