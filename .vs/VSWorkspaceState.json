@@ -1,7 +1,11 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\blockchain",
+    "\\client",
+    "\\client\\src",
+    "\\client\\src\\assets"
   ],
-  "SelectedNode": "\\index.js",
+  "SelectedNode": "\\README.md",
   "PreviewInSolutionExplorer": false
 }
