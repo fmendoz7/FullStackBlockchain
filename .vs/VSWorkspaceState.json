@@ -4,7 +4,8 @@
     "\\blockchain",
     "\\client",
     "\\client\\src",
-    "\\client\\src\\assets"
+    "\\client\\src\\assets",
+    "\\client\\src\\components"
   ],
   "SelectedNode": "\\README.md",
   "PreviewInSolutionExplorer": false
